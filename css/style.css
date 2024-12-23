@@ -1,10 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
 }
+
 /*********************************************************HOME PAGE********************************************************/
-.head{
+.head {
     display: flex;
     justify-content: space-around;
 }
