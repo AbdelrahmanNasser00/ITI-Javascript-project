@@ -11,21 +11,24 @@
 <body>
     <header>
         <div class="head">
-            <a href="#"> my Book</a>
-            <input type="search">
-            <div>
-                <a href="/modules/login/login.html">Login</a>
-                <a href="/modules/register/register.html">Regiter</a>
-                <a href="" onclick="logout()">Log out</a>
+            <a href="#"> <img src="assets/img/logo.svg" class="logo" alt=""></a>
+            <nav>
+                <ul id="navLinks"></ul>
+            </nav>
+            <div class="head-btns">
+                <a href="/modules/login/login.html" class="navLink login">Login</a>
+                <a href="/modules/register/register.html"class="navLink ">Regiter</a>
+                <a href="" onclick="logout()" id="logOut"class="navLink ">Log out</a>
                 <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
-        <nav>
-            <ul></ul>
-        </nav>
     </header>
     <main>
-        <section>
+        <section class="filters">
+            <input type="search">
+        </section>
+        <section id="cards">
+
         </section>
     </main>
     <footer></footer>
