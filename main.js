@@ -56,3 +56,9 @@ function logout() {
   sessionStorage.removeItem("currentUser");
   localStorage.removeItem("currentUser");
 }
+
+
+/****************************TO GET ALL BOOKS FROM LOCAL STORAGE********************************** */
+
+var localBooksData = JSON.parse(localStorage.getItem("apiData"))
+
