@@ -16,7 +16,7 @@ function loadRegisterPage() {
     imgContainer.id = "imgContainer";
     imgContainer.classList.add("imgContainer");
     const registerImage = document.createElement("img");
-    registerImage.src = "../../assets/img/login-pic.svg";
+    registerImage.src = "../../assets/img/register.svg";
     registerImage.alt = "register";
     imgContainer.appendChild(registerImage);
     registerContainer.appendChild(imgContainer);
