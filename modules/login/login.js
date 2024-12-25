@@ -10,21 +10,36 @@ else {
 }
 function loadLoginPage() {
   document.addEventListener("DOMContentLoaded", () => {
-    // Select the container where the form will be inserted
-    const loginContainer = document.getElementById("loginContainer");
+    const loginContainer = document.getElementById("loginCard");
+    const imgContainer = document.createElement("div");
+    imgContainer.id = "imgContainer";
+    imgContainer.classList.add("imgContainer");
+    const loginImage = document.createElement("img");
+    loginImage.src = "../../assets/img/login-pic.svg";
+    loginImage.alt = "login";
+    imgContainer.appendChild(loginImage);
+    loginContainer.appendChild(imgContainer);
 
     // form
     const loginForm = document.createElement("form");
     loginForm.id = "loginForm";
 
+    // form header
+    const loginH2 = document.createElement("h2");
+    loginH2.textContent = "Sign In";
+    loginForm.appendChild(loginH2);
+
     // email input
     const emailLabel = document.createElement("label");
     emailLabel.setAttribute("for", "email");
-    emailLabel.textContent = "Email:";
+    emailLabel.textContent = "Email address";
+    emailLabel.id = "emailLabel";
     loginForm.appendChild(emailLabel);
 
     const emailInput = document.createElement("input");
     emailInput.type = "email";
+    emailInput.class = "email";
+    emailInput.placeholder = "Enter email";
     emailInput.id = "email";
     emailInput.name = "email";
     emailInput.required = true;
@@ -33,25 +48,34 @@ function loadLoginPage() {
     // password input
     const passwordLabel = document.createElement("label");
     passwordLabel.setAttribute("for", "password");
-    passwordLabel.textContent = "Password:";
+    passwordLabel.textContent = "Password";
+    passwordLabel.id = "passwordLabel";
+
     loginForm.appendChild(passwordLabel);
 
     const passwordInput = document.createElement("input");
     passwordInput.type = "password";
+    passwordInput.class = "password";
+    passwordInput.placeholder = "Enter password";
     passwordInput.id = "password";
     passwordInput.name = "password";
     passwordInput.required = true;
     loginForm.appendChild(passwordInput);
 
     // Remember Me checkbox
+    const rememberMeDiv = document.createElement("div");
+    rememberMeDiv.id = "rememberMeDiv";
     const rememberMeLabel = document.createElement("label");
     rememberMeLabel.textContent = "Remember Me";
+    rememberMeLabel.class = "rememberMeLabel";
     rememberMeLabel.setAttribute("for", "rememberMe");
     const rememberMeCheckbox = document.createElement("input");
     rememberMeCheckbox.type = "checkbox";
     rememberMeCheckbox.id = "rememberMe";
-    loginForm.appendChild(rememberMeLabel);
-    loginForm.appendChild(rememberMeCheckbox);
+    rememberMeCheckbox.class = "rememberMeCheckbox";
+    rememberMeDiv.appendChild(rememberMeLabel);
+    rememberMeDiv.appendChild(rememberMeCheckbox);
+    loginForm.appendChild(rememberMeDiv);
 
     // submit button
     const submitButton = document.createElement("button");
@@ -62,8 +86,10 @@ function loadLoginPage() {
     // don't have email
     const dontHaveEmailText = document.createElement("span");
     dontHaveEmailText.textContent = "Don't have an account? ";
+    dontHaveEmailText.id = "dontHaveEmailText";
     const signupLink = document.createElement("a");
     signupLink.textContent = "Sign up";
+    signupLink.id = "signupLink";
     signupLink.href = "../register/register.html";
     loginForm.appendChild(dontHaveEmailText);
     loginForm.appendChild(signupLink);
@@ -86,30 +112,10 @@ function loadLoginPage() {
           ? localStorage
           : sessionStorage;
         storage.setItem("currentUser", JSON.stringify(user));
-        fetchBooks();
         window.location.href = "../../index.html";
       } else {
         alert("Invalid email or password.");
       }
     });
   });
-}
-
-function fetchBooks() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("GET", "https://api.itbook.store/1.0/new", true);
-  xhttp.send();
-
-  xhttp.onreadystatechange = function () {
-    if (xhttp.status === 200) {
-      const books = JSON.parse(xhttp.responseText);
-      console.log(books.data);
-    } else {
-      console.error(xhttp.status);
-    }
-  };
-
-  xhttp.onerror = function () {
-    console.error("Request failed.");
-  };
 }
