@@ -16,38 +16,47 @@
           <ul id="navLinks"></ul>
         </nav>
         <div class="head-btns">
-          <a href="/modules/login/login.html" class="navLink login">Login</a>
-          <a href="/modules/register/register.html" class="navLink">Regiter</a>
-          <a href="index.html" onclick="logout()" id="logOut" class="navLink"
-            >Log out</a
-          >
+          <a href="/modules/login/login.html" class=" login">Login</a>
+          <a href="/modules/register/register.html" class="register">Register</a>
+          <a href="index.html" onclick="logout()" id="logOut" class="logout">Log out</a>
           <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
       </div>
     </header>
     <main>
+      
+      <section class="section1">
+        <div>
+          <h1>Unleash Your <span>Creativity</span> <br> With The Power Of A Book</h1>
+          <p>This should be used to tell a story and let your users know a <br> little more about your product or service.</p>
+        </div>
+        <div class="secton1-img"><img src="assets/img/creative-composition-world-book-day.png" alt=""></div>
+      </section>
+      <hr>
+
       <section class="filters">
         <div class="search-bar">
           <span class="magnifying"
             ><i class="fa-solid fa-magnifying-glass"></i
           ></span>
-          <input type="search" class="search" placeholder="Search" />
+          <input type="search" class="search" id="search" placeholder="Search" />
         </div>
         <!---------------------------------  FILTERS  ------------------------------------------------->
+
         <div class="filter-bar">
           <label for="filter"><i class="fa-solid fa-filter"></i></label>
           <input list="options" id="filter" name="filter" />
           <datalist id="options">
             <option value="price: High To Low"></option>
             <option value="price: Low To High"></option>
-            <option value="Author"></option>
           </datalist>
         </div>
       </section>
-
       <section id="cards"></section>
     </main>
+
     <footer></footer>
+    <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
 
     <script type="module" src="main.js"></script>
     <script type="module" src="api/filter.js"></script>

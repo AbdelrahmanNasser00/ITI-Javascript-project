@@ -33,6 +33,8 @@ var ul = [
 
 var list = document.getElementById("navLinks");
 var cards = document.getElementById("cards");
+var search =document.getElementById("search");
+// console.log(search.value)
 
 function navLinks() {
   for (var i = 0; i < ul.length; i++) {
@@ -40,6 +42,7 @@ function navLinks() {
     listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
     list.append(listItem);
   }
+
 }
 
 navLinks();
@@ -64,28 +67,32 @@ function getCard(img, name, author, price) {
   `;
 }
 
-function displayAllBooks() {
+function displayAllBooks(arr) {
+
   var cards = document.getElementById("cards");
-  for (let i = 0; i < localBooksData.length; i++) {
+  cards.innerHTML=''
+  for (let i = 0; i < arr.length; i++) {
     var book = document.createElement("div");
     book.classList.add("book-card");
     book.innerHTML = getCard(
-      localBooksData[i].cover_image,
-      localBooksData[i].title,
-      localBooksData[i].author,
-      localBooksData[i].price
+      arr[i].cover_image,
+      arr[i].title,
+      arr[i].author,
+      arr[i].price
     );
 
     cards.append(book);
   }
 }
+
 /******************Display all books for first time *******************************/
 
-displayAllBooks();
+displayAllBooks(localBooksData);
 
 /***********************************filters**************************************************************/
 
 /***************even listener to get selected value of filter ********************/
+
 var selectedValue;
 var filterInput = document.getElementById("filter");
 filterInput.addEventListener("input", function () {
@@ -99,7 +106,7 @@ function displayFilterBooks() {
 
   switch (selectedValue) {
     case "":
-      displayAllBooks(); // if user remove all filter
+      displayAllBooks(localBooksData); // if user remove all filter
       break;
     case "price: Low To High":
       sortBooksLowToHigh(); // this function i imported it from filter.js
@@ -112,12 +119,43 @@ function displayFilterBooks() {
       break;
 
     default:
-      displayAllBooks();
+      displayAllBooks(localBooksData);
       break;
   }
 }
 
-/*********************************************************************************************** */
+/************************************************ SEARCH******************************************************/
+
+function searchBooks(){
+
+  var value=this.value;
+  var valueLowerCase = value.toLowerCase();
+  var arr=[];
+  
+  for(var i=0;i<localBooksData.length;i++){
+
+    var titleLowerCase = localBooksData[i].title.toLowerCase();
+
+    if(titleLowerCase.includes( valueLowerCase)){
+
+      arr.push(localBooksData[i]);
+
+    }
+
+  }
+  console.log(arr)
+  displayAllBooks(arr)
+
+}
+
+search.addEventListener("input", searchBooks)
+
+
+/********************************************************arrow**************************************************/
+
+
+
+/**************************************************logout**********************************************************/
 
 // logout button
 function logout() {
