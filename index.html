@@ -25,10 +25,25 @@
     </header>
     <main>
         <section class="filters">
-            <input type="search">
-        </section>
-        <section id="cards">
 
+            <div class="search-bar">
+                <span class="magnifying" ><i class="fa-solid fa-magnifying-glass"></i></span>
+                <input type="search"  class="search" placeholder="Search">
+            </div>
+<!---------------------------------  FILTERS  ------------------------------------------------->
+            <div class="filter-bar">
+                <label for="filter"><i class="fa-solid fa-filter"></i></label>
+                <input list="options" id="filter" name="filter">
+                <datalist id="options">
+                    <option value="price: High To Low" ></option>
+                    <option value="price: Low To High"></option>
+                    <option value="Author"></option>
+                </datalist>
+            </div>
+        </section>
+
+        <section id="cards">
+            
         </section>
     </main>
     <footer></footer>
