@@ -15,6 +15,10 @@
     --color7:#1d5f55;
 }
 
+html{
+    scroll-behavior: smooth;
+}
+
 /*********************************************************HOME PAGE********************************************************/
 body {
     /* background-color: var(--mainColor); */
@@ -45,9 +49,6 @@ header{
     gap: 15px;
 }
 
-#logOut {
-    /* display: none; */
-}
 
 nav {
     display: flex;
@@ -63,23 +64,12 @@ nav {
     transition: all 0.3s;
 }
 
-.navIl:hover {
-    text-shadow: 1px 1px 1px var(--color4);
-    transform: scale(1.3);
-    text-decoration: underline;
-    text-decoration-color: #10352f;
-    text-underline-offset: 7px;
-}
 
 .fa-cart-shopping {
     color: var(--color4);
     font-size: 20px;
     transition: all 0.3s;
 
-}
-
-.fa-cart-shopping:hover{
-    color: #fd7612;
 }
 
 .logo {
@@ -94,10 +84,6 @@ nav {
     border-radius: 20px;
     color: #583101;
     transition: all 0.3s;
-}
-.login:hover ,.register:hover ,.logout:hover{
-    background-color: #fd7612;
-    color: var(--mainColor);
 }
 
 
@@ -139,7 +125,7 @@ hr{
     margin: 60px  auto;
     padding: 20px;
 }
-.search-bar{
+.search-bar ,.filter-bar{
     background-color: var(--color2);
     padding: 5px ;
     display: flex;
@@ -148,11 +134,11 @@ hr{
     align-items: center;
     border-radius: 30px;
 }
-.fa-magnifying-glass{
+.fa-magnifying-glass ,.fa-filter{
     color: var(--color7);
     font-size: 20px;
 }
-.magnifying{
+.magnifying ,.filter{
     border-radius: 50%;
     padding: 10px;
     background-color: var(--mainColor);
@@ -164,8 +150,11 @@ hr{
     border: none;
     font-size: 20px;
 }
-.search:focus{
-    outline: none;
+#filter{
+    background: none;
+    padding: 5px;
+    border: none;
+    font-size: 18px;
 }
 
 /***************************************BOOK CARD*********************************/
@@ -182,6 +171,7 @@ hr{
 .book-card{
     background-color: #f8f0dd;
     width: 200px;
+    height: 340px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -192,10 +182,9 @@ hr{
     transition: all 0.3s;
     cursor: pointer;
 
+
 }
-.book-card:hover{
-    transform: scale(0.9);
-}
+
 .book-img{
     width: 150px;
     height: 200px;
@@ -238,13 +227,59 @@ hr{
     transition: all 0.3s;
 
 }
-.arrow:hover{
-    transform: scale(0.9);
-    background-color: #1d5f55;
-}
+
 .fa-arrow-up{
     color: var(--mainColor);
     font-size: 20px;
 }
 
-
+/****************************************************Slider********************************************/
+#slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    overflow: hidden;
+    margin: 50px auto;
+    position: relative;
+}
+#slider {
+    width: 60%;
+    overflow: hidden;
+    position: relative;
+    padding: 10px 0;
+}
+.slider-track {
+    display: flex;
+    gap: 15px; 
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+}
+.slide {
+    flex: 0 0 calc((100% / 3) - (20px * 2 / 3)); /* Divide by 3 and account for gaps */
+    max-width: calc((100% / 3) - (20px * 2 / 3));
+    box-sizing: border-box;
+}
+.slider-left-btn {
+    background-color: #fd7612;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: absolute;
+    border: none;
+    z-index: 20;
+    left: 0;
+    transition: all 0.3s;
+}
+.slider-right-btn{
+    background-color: #fd7612;
+    padding: 10px 15px;
+    border-radius: 10px;
+    position: absolute;
+    right: 0px;
+    border: none;
+    z-index: 20;
+    transition: all 0.3s;
+}
+.fa-arrow-left,.fa-arrow-right{
+    font-size: 20px;
+}

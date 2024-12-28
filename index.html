@@ -33,7 +33,14 @@
         <div class="secton1-img"><img src="assets/img/creative-composition-world-book-day.png" alt=""></div>
       </section>
       <hr>
-
+      <section id="slider-container" >
+        <button class="slider-left-btn"> <i class="fa-solid fa-arrow-left"></i></button>
+        <div id="slider">
+          <div class="slider-track"></div>
+        </div>
+        <button class="slider-right-btn"> <i class="fa-solid fa-arrow-right"></i> </button>
+      </section>
+      <hr>
       <section class="filters">
         <div class="search-bar">
           <span class="magnifying"
@@ -44,14 +51,15 @@
         <!---------------------------------  FILTERS  ------------------------------------------------->
 
         <div class="filter-bar">
-          <label for="filter"><i class="fa-solid fa-filter"></i></label>
-          <input list="options" id="filter" name="filter" />
+          <label for="filter"><span class="filter"><i class="fa-solid fa-filter"></i></span></i></label>
+          <input list="options" id="filter" name="filter" placeholder="Filter Books"/>
           <datalist id="options">
             <option value="price: High To Low"></option>
             <option value="price: Low To High"></option>
           </datalist>
         </div>
       </section>
+
       <section id="cards"></section>
     </main>
 
