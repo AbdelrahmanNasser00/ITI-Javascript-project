@@ -241,6 +241,7 @@ hr{
     width: 80%;
     overflow: hidden;
     margin: 50px auto;
+    padding-top:50px ;
     position: relative;
 }
 #slider {
@@ -282,4 +283,10 @@ hr{
 }
 .fa-arrow-left,.fa-arrow-right{
     font-size: 20px;
+}
+.new{
+    position: absolute;
+    top: 0px;
+    font-size: 35px;
+    color: #164a42;
 }
