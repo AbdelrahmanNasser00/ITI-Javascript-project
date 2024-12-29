@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+:root {
+    --mainColor: #fcf7e6;
+    --color1: #7f5539;
+    --color2: #CCD5AE;
+    --color3: #6b705c;
+    --color4: #3f4238;
+    --color5: #10352f;
+    --color6: #164a42;
+    --color7: #1d5f55;
+    --color8: #f5e0e6;
+}
+
+body {
+    background-image: linear-gradient(253deg, var(--mainColor), #fffafe);
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #2C3E50;
+    animation: fadeIn 1.5s ease-out;
+    height:100vh
+}
+#header{
+    margin-top: 2%;
+    text-align: center;
+}
+
+#header h2{
+    text-shadow: 0px 0px 10px var(--color2);
+}
+
+#favDiv {
+    border-radius: 8px;
+    overflow: auto;
+    margin: 3% auto 0;
+    min-width: 650px;
+    max-width: 55%;
+    background-color: #fffafe;
+    height: 100%;
+    box-shadow: 0px 0px 15px var(--color2);
+    box-sizing: border-box; 
+    padding: 5px;
+}
+
+/* Media query for screens wider than 600px */
+@media (min-width: 651px) {
+    #favDiv {
+        margin: calc(100%-650px);  
+    }
+}
+.item1{
+    background-color: var(--color2);
+    
+}
+.item2{
+    background-color: var(--mainColor);
+}
+#favDiv .item{
+    
+    height: 30%;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px var(--mainColor);
+    display: flex;
+    align-content: center;
+    transition-duration: .5s;
+}
+#favDiv .item:hover{
+    transform: scale(1.04);
+}
+#favDiv .item #imgDiv{
+    margin: 16px 0;
+    width: 40%;
+    text-align: center;
+}
+#favDiv .item #imgDiv img{
+    height: 100%;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px var(--mainColor);
+    transition-duration:.5s;
+}
+
+
+#itemInfo{
+    margin: 20px 30px 20px 0;
+    color: var(--color1);
+
+}
+#author{
+    font-weight: 600;
+    font-style: italic;
+}
+#description{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 12px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 13px;
+
+}
+#goToItem{
+    border-radius: 3px;
+    box-shadow: 4px 4px 15px var(--mainColor);
+    border: 1px solid var(--color1);
+    margin-top: 8px;
+    background-color: var(--color1);
+    padding: 8px;
+    font-size: 14px;
+    color: #f5e0e6;
+    transition-duration: .3s;
+}
+#goToItem:hover{
+    transform: scale(1.05,1.1);
+    /* background-color: #7f553965; */
+    box-shadow: 6px 6px 25px var(--mainColor);
+    font-weight: bold;
+}

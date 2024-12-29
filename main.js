@@ -83,7 +83,9 @@ function displayAllBooks(arr)
       arr[i].author,
       arr[i].price
     );
-
+    book.addEventListener("click",function(){
+      window.location.href = "modules/product_page/product_page.html?id=" + localBooksData[i].id;
+    })
     cards.append(book);
   }
 }
@@ -223,8 +225,9 @@ function displaySlider()
         sliderArr[1].author,
         sliderArr[1].price
       )
+      
     slider.append(SliderContainer);
-
+    
 };
 
 // Use the provided displaySlider function
