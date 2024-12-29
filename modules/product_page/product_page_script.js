@@ -3,6 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var apiData = JSON.parse(localStorage.getItem("apiData"));
 
+  var users = JSON.parse(localStorage.getItem("users"));
+
+  var currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  console.log(users);
+  console.log(currentUser);
+
   var addToCardSection = document.getElementById("addToCardSection");
 
   for (var book of apiData) {
@@ -30,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <span class="tag">Year: ${book.publication_year}</span>
         ${book.genre.map((g) => `<span class="tag">${g}</span>`).join(" ")}
     </div>
-    <button title="add to favourite" id="wishlistButton"><i class="fas fa-heart"></i> </button>
+    <button title="add to favourite" id="wishlistButton"><i class="fas fa-heart"></i></button>
     <button id="addToCard"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 `;
 
@@ -64,16 +70,69 @@ document.addEventListener("DOMContentLoaded", function () {
         addToCardSection.style.animationName = "anim2";
         addToCardSection.style.animationDuration = "1s";
         addToCardSection.style.animationFillMode = "forwards";
+        addToCardSection.style.zIndex = -1;
       });
 
       mainContent.appendChild(bookImageSect);
       mainContent.appendChild(bookInfo);
     }
   }
-  const wishlistButton = document.getElementById("wishlistButton");
+  // Initialize wishlist status
+  var wishlistButton = document.getElementById("wishlistButton");
+  var addedToWishlist = false;
 
-  wishlistButton.addEventListener("click", () => {
-    wishlistButton.style.color = "red";
+  // Check if the book is in the user's wishlist
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === currentUser.email) {
+      if ("favBooks" in users[i] && users[i].favBooks.length > 0) {
+        if (users[i].favBooks.indexOf(id) !== -1) {
+          addedToWishlist = true;
+          wishlistButton.style.color = "red"; // Book is in wishlist
+        }
+      } else {
+        addedToWishlist = false;
+        wishlistButton.style.color = "black"; // No books in wishlist
+      }
+    }
+  }
+
+  // Wishlist button click event
+  wishlistButton.addEventListener("click", function () {
+    console.log('Wishlist button clicked');
+
+    // Toggle wishlist status
+    if (addedToWishlist == false) {
+      wishlistButton.style.color = "red"; // Add to wishlist
+      addedToWishlist = true;
+    } else {
+      wishlistButton.style.color = "black"; // Remove from wishlist
+      addedToWishlist = false;
+    }
+
+    // Update the user's favorite books in localStorage
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].email === currentUser.email) {
+        if (addedToWishlist) {
+          if ("favBooks" in users[i]) {
+            users[i].favBooks.push(id); // Add book to favBooks
+          } else {
+            users[i].favBooks = [id];
+          }
+        } else {
+          if ("favBooks" in users[i]) {
+            const index = users[i].favBooks.indexOf(id);
+            if (index !== -1) {
+              users[i].favBooks.splice(index, 1); // Remove book from favBooks
+            }
+          }
+        }
+        break;
+      }
+    }
+
+    // Save the updated users array to localStorage
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log(users); // Log the updated users array
   });
 
   // Recommended Books Section
@@ -158,7 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   addToCart.addEventListener("click", () => {
     styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-
+    addToCardSection.style.zIndex=1;
     addToCardSection.style.animationName = "anim1";
 
     addToCardSection.style.animationDuration = "1s";
