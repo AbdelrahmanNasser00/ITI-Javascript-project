@@ -76,7 +76,10 @@ function displayAllBooks(arr) {
       arr[i].author,
       arr[i].price
     );
-
+    book.addEventListener("click", function () {
+      window.location.href =
+        "modules/product_page/product_page.html?id=" + localBooksData[i].id;
+    });
     cards.append(book);
   }
 }
