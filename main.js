@@ -22,7 +22,7 @@ var ul = [
     link: "#",
   },
   {
-    name: "Offers",
+    name: "Categories",
     link: "#",
   },
   {
