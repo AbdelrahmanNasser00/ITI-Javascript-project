@@ -32,17 +32,14 @@ var ul = [
 ];
 
 var list = document.getElementById("navLinks");
-var search =document.getElementById("search");
-
+var search = document.getElementById("search");
 
 function navLinks() {
-  for (var i = 0; i < ul.length; i++)
-  {
+  for (var i = 0; i < ul.length; i++) {
     var listItem = document.createElement("li");
     listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
     list.append(listItem);
   }
-
 }
 
 navLinks();
@@ -58,8 +55,7 @@ list.style.cssText = `
 
 /************************ CARDS***********************/
 
-function getCard(img, name, author, price)
-{
+function getCard(img, name, author, price) {
   return `
               <img src=${img} alt="" class="book-img">
               <h3 class="book-name">${name}</h3>
@@ -68,13 +64,10 @@ function getCard(img, name, author, price)
   `;
 }
 
-function displayAllBooks(arr)
- {
-
+function displayAllBooks(arr) {
   var cards = document.getElementById("cards");
-  cards.innerHTML=''
-  for (let i = 0; i < arr.length; i++)
-    {
+  cards.innerHTML = "";
+  for (let i = 0; i < arr.length; i++) {
     var book = document.createElement("div");
     book.classList.add("book-card");
     book.innerHTML = getCard(
@@ -98,14 +91,12 @@ displayAllBooks(localBooksData);
 
 var selectedValue;
 var filterInput = document.getElementById("filter");
-filterInput.addEventListener("input", function () 
-{
+filterInput.addEventListener("input", function () {
   selectedValue = filterInput.value;
   displayFilterBooks(); // when user type any filter fun check function
 });
 
-function displayFilterBooks() 
-{
+function displayFilterBooks() {
   var cards = document.getElementById("cards");
   cards.innerHTML = ""; // make page empty to display new books data
 
@@ -131,101 +122,89 @@ function displayFilterBooks()
 
 /************************************************ SEARCH******************************************************/
 
-function searchBooks()
-{
-
-  var value=this.value;
+function searchBooks() {
+  var value = this.value;
   var valueLowerCase = value.toLowerCase();
-  var arr=[];
-  
-  for(var i=0;i<localBooksData.length;i++)
-    {
+  var arr = [];
 
+  for (var i = 0; i < localBooksData.length; i++) {
     var titleLowerCase = localBooksData[i].title.toLowerCase();
 
-    if(titleLowerCase.includes( valueLowerCase))
-      {
-
+    if (titleLowerCase.includes(valueLowerCase)) {
       arr.push(localBooksData[i]);
     }
-
   }
-  console.log(arr)
-  displayAllBooks(arr)
-
+  console.log(arr);
+  displayAllBooks(arr);
 }
 
-search.addEventListener("input", searchBooks)
-
+search.addEventListener("input", searchBooks);
 
 /********************************************************arrow***************************************************/
 
-var arrow=document.querySelector("#arrow");
+var arrow = document.querySelector("#arrow");
 
-function scrollToTop(){
-  window.scrollTo(0,0)
+function scrollToTop() {
+  window.scrollTo(0, 0);
 }
 
-arrow.addEventListener("click", scrollToTop)
+arrow.addEventListener("click", scrollToTop);
 
 /********************************************************Slider**************************************************/
 
-var sliderArr= localBooksData.slice(0,10)
-console.log(sliderArr)
+var sliderArr = localBooksData.slice(0, 10);
+console.log(sliderArr);
 
-function displaySlider()
-{
-  var slider=document.getElementById("slider");
-  var SliderContainer=document.createElement("div") ;
-      SliderContainer.classList.add("book-card","slide")
-      SliderContainer.innerHTML= getCard(
-        sliderArr[8].cover_image,
-        sliderArr[8].title,
-        sliderArr[8].author,
-        sliderArr[8].price
-      )
+function displaySlider() {
+  var slider = document.getElementById("slider");
+  var SliderContainer = document.createElement("div");
+  SliderContainer.classList.add("book-card", "slide");
+  SliderContainer.innerHTML = getCard(
+    sliderArr[8].cover_image,
+    sliderArr[8].title,
+    sliderArr[8].author,
+    sliderArr[8].price
+  );
+  slider.append(SliderContainer);
+  var SliderContainer = document.createElement("div");
+  SliderContainer.classList.add("book-card", "slide");
+  SliderContainer.innerHTML = getCard(
+    sliderArr[9].cover_image,
+    sliderArr[9].title,
+    sliderArr[9].author,
+    sliderArr[9].price
+  );
+  slider.append(SliderContainer);
+  for (var i = 0; i < sliderArr.length; i++) {
+    var SliderContainer = document.createElement("div");
+    SliderContainer.classList.add("book-card", "slide");
+    SliderContainer.innerHTML = getCard(
+      sliderArr[i].cover_image,
+      sliderArr[i].title,
+      sliderArr[i].author,
+      sliderArr[i].price
+    );
     slider.append(SliderContainer);
-    var SliderContainer=document.createElement("div") ;
-      SliderContainer.classList.add("book-card","slide")
-      SliderContainer.innerHTML= getCard(
-        sliderArr[9].cover_image,
-        sliderArr[9].title,
-        sliderArr[9].author,
-        sliderArr[9].price
-      )
-    slider.append(SliderContainer);
-  for(var i=0;i<sliderArr.length;i++)
-  {
-      var SliderContainer=document.createElement("div") ;
-      SliderContainer.classList.add("book-card","slide")
-      SliderContainer.innerHTML= getCard(
-        sliderArr[i].cover_image,
-        sliderArr[i].title,
-        sliderArr[i].author,
-        sliderArr[i].price
-      )
-    slider.append(SliderContainer);
-  };
-  var SliderContainer=document.createElement("div") ;
-      SliderContainer.classList.add("book-card","slide")
-      SliderContainer.innerHTML= getCard(
-        sliderArr[0].cover_image,
-        sliderArr[0].title,
-        sliderArr[0].author,
-        sliderArr[0].price
-      )
-    slider.append(SliderContainer);
-    var SliderContainer=document.createElement("div") ;
-      SliderContainer.classList.add("book-card","slide")
-      SliderContainer.innerHTML= getCard(
-        sliderArr[1].cover_image,
-        sliderArr[1].title,
-        sliderArr[1].author,
-        sliderArr[1].price
-      )
-    slider.append(SliderContainer);
-
-};
+  }
+  var SliderContainer = document.createElement("div");
+  SliderContainer.classList.add("book-card", "slide");
+  SliderContainer.innerHTML = getCard(
+    sliderArr[0].cover_image,
+    sliderArr[0].title,
+    sliderArr[0].author,
+    sliderArr[0].price
+  );
+  slider.append(SliderContainer);
+  var SliderContainer = document.createElement("div");
+  SliderContainer.classList.add("book-card", "slide");
+  SliderContainer.innerHTML = getCard(
+    sliderArr[1].cover_image,
+    sliderArr[1].title,
+    sliderArr[1].author,
+    sliderArr[1].price
+  );
+  slider.append(SliderContainer);
+}
 
 // Use the provided displaySlider function
 displaySlider();
@@ -237,7 +216,7 @@ let nextBtn = document.querySelector(".slider-right-btn");
 let currentIndex = 2; // Start at the first original slide (after duplicates)
 const totalSlides = sliderArr.length; // Number of original slides
 const slidesVisible = 3;
-const slideWidth = 100 / slidesVisible ;
+const slideWidth = 100 / slidesVisible;
 
 // Adjust `#slider` to contain `.slider-track` and append slides there
 const slider = document.getElementById("slider");
@@ -286,176 +265,181 @@ prevBtn.addEventListener("click", () => {
 // Initialize Slider
 jumpToIndex(currentIndex);
 
-
 /**************************************************logout**********************************************************/
-
 // logout button
+const logoutBtn = document.getElementById("logOut");
+logoutBtn.addEventListener("click", () => {
+  logout();
+});
+
 function logout() {
-  sessionStorage.removeItem("currentUser");
-  localStorage.removeItem("currentUser");
+  try {
+    localStorage.removeItem("currentUser");
+    sessionStorage.removeItem("currentUser");
+  } catch (error) {
+    console.error("Error during logout:", error);
+  }
 }
 /**************************************************************************************************** */
 
-var navItems = document.querySelectorAll('.navIl');
-var cartIcons = document.querySelectorAll('.fa-cart-shopping');
-var loginButton = document.querySelector('.login');
-var registerButton = document.querySelector('.register');
-var logoutButton = document.querySelector('.logout');
-var bookCards = document.querySelectorAll('.book-card');
-var arrow = document.querySelector('.arrow');
-var sliderRightBtn = document.querySelector('.slider-right-btn');
-var sliderLeftBtn = document.querySelector('.slider-left-btn');
-
+var navItems = document.querySelectorAll(".navIl");
+var cartIcons = document.querySelectorAll(".fa-cart-shopping");
+var loginButton = document.querySelector(".login");
+var registerButton = document.querySelector(".register");
+var logoutButton = document.querySelector(".logout");
+var bookCards = document.querySelectorAll(".book-card");
+var arrow = document.querySelector(".arrow");
+var sliderRightBtn = document.querySelector(".slider-right-btn");
+var sliderLeftBtn = document.querySelector(".slider-left-btn");
 
 ///////////////////////////Hover effect functions////////////////////
 function handleMouseOverNav() {
-    this.style.textShadow = '1px 1px 1px var(--color4)';
-    this.style.transform = 'scale(1.3)';
-    this.style.textDecoration = 'underline';
-    this.style.textDecorationColor = '#10352f';
-    this.style.textUnderlineOffset = '7px';
+  this.style.textShadow = "1px 1px 1px var(--color4)";
+  this.style.transform = "scale(1.3)";
+  this.style.textDecoration = "underline";
+  this.style.textDecorationColor = "#10352f";
+  this.style.textUnderlineOffset = "7px";
 }
 
 function handleMouseOutNav() {
-    this.style.textShadow = '';
-    this.style.transform = '';
-    this.style.textDecoration = '';
+  this.style.textShadow = "";
+  this.style.transform = "";
+  this.style.textDecoration = "";
 }
 
 function handleMouseOverCart() {
-    this.style.color = '#fd7612';
+  this.style.color = "#fd7612";
 }
 
 function handleMouseOutCart() {
-    this.style.color = 'var(--color4)';
+  this.style.color = "var(--color4)";
 }
 
 function handleMouseOverButton() {
-    this.style.backgroundColor = '#fd7612';
-    this.style.color = 'var(--mainColor)';
+  this.style.backgroundColor = "#fd7612";
+  this.style.color = "var(--mainColor)";
 }
 
 function handleMouseOutButton() {
-    this.style.backgroundColor = '';
-    this.style.color = '#583101';
+  this.style.backgroundColor = "";
+  this.style.color = "#583101";
 }
 
 function handleMouseOverBookCard() {
-    this.style.transform = 'scale(0.9)';
+  this.style.transform = "scale(0.9)";
 }
 
 function handleMouseOutBookCard() {
-    this.style.transform = '';
+  this.style.transform = "";
 }
 
 function handleMouseOverArrow() {
-    this.style.transform = 'scale(0.9)';
-    this.style.backgroundColor = '#1d5f55';
+  this.style.transform = "scale(0.9)";
+  this.style.backgroundColor = "#1d5f55";
 }
 
 function handleMouseOutArrow() {
-    this.style.transform = '';
-    this.style.backgroundColor = 'var(--color6)';
+  this.style.transform = "";
+  this.style.backgroundColor = "var(--color6)";
 }
 // Hover effect functions for slider buttons
 function handleMouseOverSliderButton() {
-  this.style.cursor = 'pointer';
-  this.style.opacity = '0.8';
-  this.style.transform = 'scale(0.9)';
+  this.style.cursor = "pointer";
+  this.style.opacity = "0.8";
+  this.style.transform = "scale(0.9)";
 }
 
 function handleMouseOutSliderButton() {
-  this.style.cursor = '';
-  this.style.opacity = '';
-  this.style.transform = '';
+  this.style.cursor = "";
+  this.style.opacity = "";
+  this.style.transform = "";
 }
 
 ////// conditions to ensure that the elements exist in the DOM before attempting to attach event listeners to them
 
 // Add event listeners for nav items
 for (var i = 0; i < navItems.length; i++) {
-    navItems[i].addEventListener('mouseover', handleMouseOverNav);
-    navItems[i].addEventListener('mouseout', handleMouseOutNav);
+  navItems[i].addEventListener("mouseover", handleMouseOverNav);
+  navItems[i].addEventListener("mouseout", handleMouseOutNav);
 }
 
 // Add event listeners for cart icons
 for (var i = 0; i < cartIcons.length; i++) {
-    cartIcons[i].addEventListener('mouseover', handleMouseOverCart);
-    cartIcons[i].addEventListener('mouseout', handleMouseOutCart);
+  cartIcons[i].addEventListener("mouseover", handleMouseOverCart);
+  cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
 
 // Add event listeners for buttons
 if (loginButton) {
-    loginButton.addEventListener('mouseover', handleMouseOverButton);
-    loginButton.addEventListener('mouseout', handleMouseOutButton);
+  loginButton.addEventListener("mouseover", handleMouseOverButton);
+  loginButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
 if (registerButton) {
-    registerButton.addEventListener('mouseover', handleMouseOverButton);
-    registerButton.addEventListener('mouseout', handleMouseOutButton);
+  registerButton.addEventListener("mouseover", handleMouseOverButton);
+  registerButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
 if (logoutButton) {
-    logoutButton.addEventListener('mouseover', handleMouseOverButton);
-    logoutButton.addEventListener('mouseout', handleMouseOutButton);
+  logoutButton.addEventListener("mouseover", handleMouseOverButton);
+  logoutButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
 // Add event listeners for book cards
 for (var i = 0; i < bookCards.length; i++) {
-    bookCards[i].addEventListener('mouseover', handleMouseOverBookCard);
-    bookCards[i].addEventListener('mouseout', handleMouseOutBookCard);
+  bookCards[i].addEventListener("mouseover", handleMouseOverBookCard);
+  bookCards[i].addEventListener("mouseout", handleMouseOutBookCard);
 }
 
 // Add event listeners for arrow
 if (arrow) {
-    arrow.addEventListener('mouseover', handleMouseOverArrow);
-    arrow.addEventListener('mouseout', handleMouseOutArrow);
+  arrow.addEventListener("mouseover", handleMouseOverArrow);
+  arrow.addEventListener("mouseout", handleMouseOutArrow);
 }
 
 // Add event listeners for slider buttons
 if (sliderRightBtn) {
-    sliderRightBtn.addEventListener('mouseover', handleMouseOverSliderButton);
-    sliderRightBtn.addEventListener('mouseout', handleMouseOutSliderButton);
+  sliderRightBtn.addEventListener("mouseover", handleMouseOverSliderButton);
+  sliderRightBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
 
 if (sliderLeftBtn) {
-    sliderLeftBtn.addEventListener('mouseover', handleMouseOverSliderButton);
-    sliderLeftBtn.addEventListener('mouseout', handleMouseOutSliderButton);
+  sliderLeftBtn.addEventListener("mouseover", handleMouseOverSliderButton);
+  sliderLeftBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
 
 // Store querySelector results for .search and #options
-var searchInput = document.querySelector('.search');
-var options = document.querySelector('#filter');
+var searchInput = document.querySelector(".search");
+var options = document.querySelector("#filter");
 
 // Handle focus event for .search
 function handleFocusSearch() {
-    this.style.outline = 'none';
+  this.style.outline = "none";
 }
 
 // Handle blur event for .search
 function handleBlurSearch() {
-    this.style.outline = '';  // Reset outline if necessary
+  this.style.outline = ""; // Reset outline if necessary
 }
 
 // Handle focus event for #options
 function handleFocusOptions() {
-    this.style.outline = 'none';
+  this.style.outline = "none";
 }
 
 // Handle blur event for #options
 function handleBlurOptions() {
-    this.style.outline = '';  // Reset outline if necessary
+  this.style.outline = ""; // Reset outline if necessary
 }
 
 // Add event listeners for .search
 if (searchInput) {
-    searchInput.addEventListener('focus', handleFocusSearch);
-    searchInput.addEventListener('blur', handleBlurSearch);
+  searchInput.addEventListener("focus", handleFocusSearch);
+  searchInput.addEventListener("blur", handleBlurSearch);
 }
 
 // Add event listeners for #options
 if (options) {
-    options.addEventListener('focus', handleFocusOptions);
-    options.addEventListener('blur', handleBlurOptions);
+  options.addEventListener("focus", handleFocusOptions);
+  options.addEventListener("blur", handleBlurOptions);
 }
-
