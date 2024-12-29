@@ -225,9 +225,8 @@ function displaySlider()
         sliderArr[1].author,
         sliderArr[1].price
       )
-      
     slider.append(SliderContainer);
-    
+      
 };
 
 // Use the provided displaySlider function
