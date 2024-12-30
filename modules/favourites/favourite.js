@@ -77,17 +77,23 @@ for (var i = 0; i < favouriteBooks.length; i++) {
     price.id = "price";
     itemInfo.appendChild(price);
 
+
+
     // Use a block scope to preserve the correct `i` value
     (function(book) {
         var goToItem = document.createElement("button");
         goToItem.innerText = "Go to Item";
         goToItem.id = "goToItem";
+
+
         goToItem.addEventListener("click", function() {
             console.log('clicked');
             window.location.href = "../product_page/product_page.html?id=" + book.id;
         });
+
         itemInfo.appendChild(goToItem);
     })(favouriteBooks[i]);
+    
 }
 
 

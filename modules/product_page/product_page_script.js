@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var users = JSON.parse(localStorage.getItem("users"));
 
+  var cUser;
+
   var currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(users);
   console.log(currentUser);
@@ -84,6 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Check if the book is in the user's wishlist
   for (var i = 0; i < users.length; i++) {
     if (users[i].email === currentUser.email) {
+      cUser = users[i];
       if ("favBooks" in users[i] && users[i].favBooks.length > 0) {
         if (users[i].favBooks.indexOf(id) !== -1) {
           addedToWishlist = true;
@@ -95,6 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   }
+
+  // console.log("cuser")
+  // console.log(cUser)
 
   // Wishlist button click event
   wishlistButton.addEventListener("click", function () {
@@ -213,6 +219,14 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 `;
 
+  var goToCard = document.getElementById("goToCart");
+  goToCard.addEventListener("click",function(){
+    
+      console.log('clicked')
+      window.location.href = "../shopping_cart/shopping_cart.html";
+    
+  })
+
   var addToCart = document.getElementById("addToCard");
 
   addToCart.addEventListener("click", () => {
@@ -223,5 +237,19 @@ document.addEventListener("DOMContentLoaded", function () {
     addToCardSection.style.animationDuration = "1s";
 
     addToCardSection.style.animationFillMode = "forwards";
+
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].email === currentUser.email) {
+        
+          if ("addedToCard" in users[i]) {
+            users[i].addedToCard.push(id);
+          } else {
+            users[i].addedToCard = [id];
+          }
+      }
+    }
+    localStorage.setItem("users", JSON.stringify(users));
+    console.log(users);
   });
+
 });
