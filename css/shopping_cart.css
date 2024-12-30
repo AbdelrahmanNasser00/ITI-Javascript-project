@@ -1,0 +1,140 @@
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+/* Root colors */
+:root {
+    --mainColor: #fcf7e6;
+    --color1: #7f5539;
+    --color2: #CCD5AE;
+    --color3: #6b705c;
+    --color4: #3f4238;
+    --color5: #10352f;
+    --color6: #164a42;
+    --color7: #1d5f55;
+    --color8: #f5e0e6;
+}
+
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--mainColor); /* Background theme */
+    color: var(--color4); /* Text color */
+}
+
+/* Header styles */
+nav#header {
+    background-color: var(--color7); /* Deep green header */
+    color: var(--mainColor);
+    text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Main container */
+main#shopCart {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Item container */
+.item {
+    display: flex; /* Align image and details side-by-side */
+    margin: 15px 0;
+    border-bottom: 1px solid var(--color2);
+    padding-bottom: 15px;
+}
+
+.item:last-child {
+    border-bottom: none; /* Remove border for the last item */
+}
+
+/* Image section */
+#imgDiv {
+    flex: 1; /* Take up 1/3 of the width */
+    max-width: 150px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#imgDiv img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Item information */
+#itemInfo {
+    flex: 2; /* Take up 2/3 of the width */
+}
+
+#itemInfo h2#title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--color3); /* Slightly muted green */
+}
+
+#itemInfo p#author {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--color6); /* Medium green */
+}
+
+#itemInfo p#description {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: var(--color4); /* Darker text */
+}
+
+#itemInfo h3#price {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--color1); /* Highlighted brown */
+}
+
+#itemInfo button#goToItem,#itemInfo button#addPaymentMethod {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--color7); /* Deep green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button{
+    margin-right: 5px;
+}
+#itemInfo button#goToItem:hover,#itemInfo button#addPaymentMethod:hover {
+    background-color: var(--color6); /* Slightly lighter green on hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .item {
+        flex-direction: column; /* Stack items on small screens */
+        align-items: center;
+    }
+
+    #imgDiv {
+        max-width: 100%; /* Full width for images */
+        margin-bottom: 15px;
+    }
+
+    #itemInfo {
+        text-align: center; /* Center align text */
+    }
+}

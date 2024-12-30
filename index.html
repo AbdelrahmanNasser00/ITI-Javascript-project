@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/all.css">
-    <link rel="stylesheet" href="css/style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" href="../../assets/img/logo_circle.png" />
 
-    <title>Document</title>
-</head>
-<body>
+    <title>Book Haven</title>
+  </head>
+  <body>
     <header>
         <div class="head">
             <a href="#"> <img src="assets/img/logo.svg" class="logo" alt=""></a>
@@ -19,7 +20,7 @@
                 <a href="/modules/login/login.html" class="navLink login">Login</a>
                 <a href="/modules/register/register.html"class="navLink ">Regiter</a>
                 <a href="index.html" onclick="logout()" id="logOut"class="navLink ">Log out</a>
-                <a href="/modules/card/card.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
             </div>
         </div>
     </header>
@@ -27,13 +28,15 @@
         <section class="filters">
             <input type="search">
         </section>
-            <section id="cards">
-                 
+        <section id="cards">
+
         </section>
     </main>
-    <footer></footer>
 
-    <script src="main.js"></script>
-    <script src="api/filter.js"></script>
-</body>
+    <footer></footer>
+    <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
+
+    <script type="module" src="main.js"></script>
+    <script type="module" src="api/filter.js"></script>
+  </body>
 </html>

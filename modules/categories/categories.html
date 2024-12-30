@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/all.css" />
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="categories.css" />
+    <link rel="icon" href="../../assets/img/logo_circle.png" />
+    <title>Categories</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="head">
+        <a href="#">
+          <img src="../../assets/img/logo.svg" class="logo" alt=""
+        /></a>
+        <nav>
+          <ul id="navLinks"></ul>
+        </nav>
+        <div class="head-btns">
+          <a href="../../modules/login/login.html" class="login">Login</a>
+          <a href="../../modules/register/register.html" class="register"
+            >Register</a
+          >
+          <a
+            href="../../index.html"
+            onclick="logout()"
+            id="logOut"
+            class="logout"
+            >Log out</a
+          >
+          <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="categories-head">
+        <div>
+          <h1>
+            Our <span> Categories </span>is Romance,<br />
+            Drama, Horror and More
+          </h1>
+          <p>
+            We have a wide range of exciting books for you to explore and enjoy.
+          </p>
+        </div>
+      </section>
+
+      <br />
+      <br />
+
+      <section id="allCategories">
+
+      </section>
+    </main>
+
+    <footer></footer>
+    <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
+
+    <script type="module" src="categories.js"></script>
+    <script type="module" src="../../api/filter.js"></script>
+  </body>
+</html>
