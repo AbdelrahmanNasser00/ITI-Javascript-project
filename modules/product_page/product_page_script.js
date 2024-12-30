@@ -241,29 +241,34 @@ document.addEventListener("DOMContentLoaded", function () {
   })
 
   var addToCart = document.getElementById("addToCard");
+  addToCart.addEventListener("click",function(){
+    
+    // console.log('clicked')
+    window.location.href = "../shopping_cart/shopping_cart.html";
+  
+})
+  // addToCart.addEventListener("click", () => {
+  //   styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
+  //   addToCardSection.style.zIndex=2;
+  //   addToCardSection.style.animationName = "anim1";
 
-  addToCart.addEventListener("click", () => {
-    styleSheet.insertRule(keyframes, styleSheet.cssRules.length);
-    addToCardSection.style.zIndex=1;
-    addToCardSection.style.animationName = "anim1";
+  //   addToCardSection.style.animationDuration = "1s";
 
-    addToCardSection.style.animationDuration = "1s";
+  //   addToCardSection.style.animationFillMode = "forwards";
 
-    addToCardSection.style.animationFillMode = "forwards";
-
-    for (var i = 0; i < users.length; i++) {
-      if (users[i].email === currentUser.email) {
+  //   for (var i = 0; i < users.length; i++) {
+  //     if (users[i].email === currentUser.email) {
         
-          if ("addedToCard" in users[i]) {
-            users[i].addedToCard.push(id);
-          } else {
-            users[i].addedToCard = [id];
-          }
-      }
-    }
-    localStorage.setItem("users", JSON.stringify(users));
+  //         if ("addedToCard" in users[i]) {
+  //           users[i].addedToCard.push(id);
+  //         } else {
+  //           users[i].addedToCard = [id];
+  //         }
+  //     }
+  //   }
+  //   localStorage.setItem("users", JSON.stringify(users));
 
-    // console.log(users);
-  });
+  //   // console.log(users);
+  // });
 
 });
