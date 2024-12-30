@@ -23,7 +23,7 @@ var ul = [
   },
   {
     name: "Categories",
-    link: "#",
+    link: "./modules/categories/categories.html",
   },
   {
     name: "new",
