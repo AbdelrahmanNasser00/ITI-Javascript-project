@@ -11,26 +11,86 @@
   </head>
   <body>
     <header>
-        <div class="head">
-            <a href="#"> <img src="assets/img/logo.svg" class="logo" alt=""></a>
-            <nav>
-                <ul id="navLinks"></ul>
-            </nav>
-            <div class="head-btns">
-                <a href="/modules/login/login.html" class="navLink login">Login</a>
-                <a href="/modules/register/register.html"class="navLink ">Regiter</a>
-                <a href="index.html" onclick="logout()" id="logOut"class="navLink ">Log out</a>
-                <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
-            </div>
+      <div class="head">
+        <a href="#"> <img src="assets/img/logo.svg" class="logo" alt="" /></a>
+        <nav>
+          <ul id="navLinks"></ul>
+        </nav>
+        <div class="head-btns">
+          <a href="/modules/login/login.html" class="login">Login</a>
+          <a href="/modules/register/register.html" class="register"
+            >Register</a
+          >
+          <a href="index.html" id="logOut" class="logout">Log out</a>
+          <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
         </div>
+      </div>
     </header>
     <main>
-        <section class="filters">
-            <input type="search">
-        </section>
-        <section id="cards">
+      <section class="section1">
+        <div>
+          <h1>
+            Unleash Your <span>Creativity</span> <br />
+            With The Power Of A Book
+          </h1>
+          <p>
+            This should be used to tell a story and let your users know a <br />
+            little more about your product or service.
+          </p>
+        </div>
+        <div class="secton1-img">
+          <img
+            src="assets/img/creative-composition-world-book-day.png"
+            alt=""
+          />
+        </div>
+      </section>
+      <hr />
+      <section id="slider-container">
+        <h2 class="new">New Arrival</h2>
+        <button class="slider-left-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <div id="slider">
+          <div class="slider-track"></div>
+        </div>
+        <button class="slider-right-btn">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </section>
+      <hr />
+      <section class="filters">
+        <div class="search-bar">
+          <span class="magnifying"
+            ><i class="fa-solid fa-magnifying-glass"></i
+          ></span>
+          <input
+            type="search"
+            class="search"
+            id="search"
+            placeholder="Search"
+          />
+        </div>
+        <!---------------------------------  FILTERS  ------------------------------------------------->
 
-        </section>
+        <div class="filter-bar">
+          <label for="filter"
+            ><span class="filter"><i class="fa-solid fa-filter"></i></span
+          ></label>
+          <input
+            list="options"
+            id="filter"
+            name="filter"
+            placeholder="Filter Books"
+          />
+          <datalist id="options">
+            <option value="price: High To Low"></option>
+            <option value="price: Low To High"></option>
+          </datalist>
+        </div>
+      </section>
+
+      <section id="cards"></section>
     </main>
 
     <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
