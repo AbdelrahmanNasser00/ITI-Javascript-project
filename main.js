@@ -35,7 +35,8 @@ var list = document.getElementById("navLinks");
 var search = document.getElementById("search");
 
 function navLinks() {
-  for (var i = 0; i < ul.length; i++) {
+  for (var i = 0; i < ul.length; i++) 
+  {
     var listItem = document.createElement("li");
     listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
     list.append(listItem);
@@ -44,18 +45,19 @@ function navLinks() {
 
 navLinks();
 
-list.style.cssText = `
+list.style.cssText = 
+  `
     display: flex;
     align-items: center;
     justify-content: center;
     gap:70px;
-    list-style:none ;
-
+    list-style:none ; 
   `;
 
 /************************ CARDS***********************/
 
-function getCard(img, name, author, price) {
+function getCard(img, name, author, price) 
+{
   return `
               <img src=${img} alt="" class="book-img">
               <h3 class="book-name">${name}</h3>
@@ -64,10 +66,12 @@ function getCard(img, name, author, price) {
   `;
 }
 
-function displayAllBooks(arr) {
+function displayAllBooks(arr) 
+{
   var cards = document.getElementById("cards");
   cards.innerHTML = "";
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) 
+  {
     var book = document.createElement("div");
     book.classList.add("book-card");
     book.innerHTML = getCard(
@@ -76,7 +80,8 @@ function displayAllBooks(arr) {
       arr[i].author,
       arr[i].price
     );
-    book.addEventListener("click", function () {
+    book.addEventListener("click", function () 
+    {
       window.location.href =
         "modules/product_page/product_page.html?id=" + localBooksData[i].id;
     });
@@ -94,16 +99,20 @@ displayAllBooks(localBooksData);
 
 var selectedValue;
 var filterInput = document.getElementById("filter");
-filterInput.addEventListener("input", function () {
+
+filterInput.addEventListener("input", function () 
+{
   selectedValue = filterInput.value;
   displayFilterBooks(); // when user type any filter fun check function
 });
 
-function displayFilterBooks() {
+function displayFilterBooks()
+{
   var cards = document.getElementById("cards");
   cards.innerHTML = ""; // make page empty to display new books data
 
-  switch (selectedValue) {
+  switch (selectedValue)
+  {
     case "":
       displayAllBooks(localBooksData); // if user remove all filter
       break;
@@ -125,15 +134,18 @@ function displayFilterBooks() {
 
 /************************************************ SEARCH******************************************************/
 
-function searchBooks() {
+function searchBooks()
+{
   var value = this.value;
   var valueLowerCase = value.toLowerCase();
   var arr = [];
 
-  for (var i = 0; i < localBooksData.length; i++) {
+  for (var i = 0; i < localBooksData.length; i++) 
+  {
     var titleLowerCase = localBooksData[i].title.toLowerCase();
 
-    if (titleLowerCase.includes(valueLowerCase)) {
+    if (titleLowerCase.includes(valueLowerCase)) 
+    {
       arr.push(localBooksData[i]);
     }
   }
@@ -147,7 +159,8 @@ search.addEventListener("input", searchBooks);
 
 var arrow = document.querySelector("#arrow");
 
-function scrollToTop() {
+function scrollToTop() 
+{
   window.scrollTo(0, 0);
 }
 
@@ -156,9 +169,9 @@ arrow.addEventListener("click", scrollToTop);
 /********************************************************Slider**************************************************/
 
 var sliderArr = localBooksData.slice(0, 10);
-console.log(sliderArr);
 
-function displaySlider() {
+function displaySlider() 
+{
   var slider = document.getElementById("slider");
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -168,7 +181,9 @@ function displaySlider() {
     sliderArr[8].author,
     sliderArr[8].price
   );
+
   slider.append(SliderContainer);
+
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
   SliderContainer.innerHTML = getCard(
@@ -177,8 +192,11 @@ function displaySlider() {
     sliderArr[9].author,
     sliderArr[9].price
   );
+
   slider.append(SliderContainer);
-  for (var i = 0; i < sliderArr.length; i++) {
+
+  for (var i = 0; i < sliderArr.length; i++)
+  {
     var SliderContainer = document.createElement("div");
     SliderContainer.classList.add("book-card", "slide");
     SliderContainer.innerHTML = getCard(
@@ -189,6 +207,7 @@ function displaySlider() {
     );
     slider.append(SliderContainer);
   }
+
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
   SliderContainer.innerHTML = getCard(
@@ -197,6 +216,7 @@ function displaySlider() {
     sliderArr[0].author,
     sliderArr[0].price
   );
+
   slider.append(SliderContainer);
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -206,80 +226,112 @@ function displaySlider() {
     sliderArr[1].author,
     sliderArr[1].price
   );
+
   slider.append(SliderContainer);
+
 }
 
-// Use the provided displaySlider function
 displaySlider();
 
-let track = document.querySelector(".slider-track");
-let prevBtn = document.querySelector(".slider-left-btn");
-let nextBtn = document.querySelector(".slider-right-btn");
+var track = document.querySelector(".slider-track");
+var prevBtn = document.querySelector(".slider-left-btn");
+var nextBtn = document.querySelector(".slider-right-btn");
 
-let currentIndex = 2; // Start at the first original slide (after duplicates)
-const totalSlides = sliderArr.length; // Number of original slides
-const slidesVisible = 3;
-const slideWidth = 100 / slidesVisible;
+var currentIndex = 2; 
+var totalSlides = sliderArr.length; 
+var slidesVisible = 3;
+var slideWidth = 100 / slidesVisible;
 
-// Adjust `#slider` to contain `.slider-track` and append slides there
-const slider = document.getElementById("slider");
-const sliderTrack = document.createElement("div");
+var slider = document.getElementById("slider");
+var sliderTrack = document.createElement("div");
+
 sliderTrack.classList.add("slider-track");
 slider.append(sliderTrack);
 
-// Move slides from `#slider` to `.slider-track`
-const slides = Array.from(slider.children).filter((child) =>
-  child.classList.contains("slide")
-);
-slides.forEach((slide) => sliderTrack.appendChild(slide));
+function filterAndAppendSlides() 
+{
+  var slides = [];
+  
+  for (var i = 0; i < slider.children.length; i++) 
+    {
+    var child = slider.children[i];
+    if (child.classList.contains("slide")) 
+    {
+      slides.push(child);
+    }
+  }
+  for (var j = 0; j < slides.length; j++) 
+  {
+    sliderTrack.appendChild(slides[j]);
+  }
+}
 
-// Initialize slider position
-function updateSlider() {
-  const offset = -(currentIndex * slideWidth);
+filterAndAppendSlides();
+
+
+
+function updateSlider() 
+{
+  var offset = -(currentIndex * slideWidth);
   sliderTrack.style.transition = "transform 0.3s ease-in-out";
   sliderTrack.style.transform = `translateX(${offset}%)`;
 }
 
-// Instant jump without animation
-function jumpToIndex(index) {
+function jumpToIndex(index) 
+{
   currentIndex = index;
   sliderTrack.style.transition = "none";
   sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
 }
 
-// Next Button
-nextBtn.addEventListener("click", () => {
+function handleNextClick() 
+{
   currentIndex++;
   updateSlider();
   if (currentIndex === totalSlides + 2) {
-    setTimeout(() => jumpToIndex(2), 300); // Reset to the first original slide
+    setTimeout(function () {
+      jumpToIndex(2); 
+    }, 300);
   }
-});
+}
 
-// Previous Button
-prevBtn.addEventListener("click", () => {
+function handlePrevClick() 
+{
   currentIndex--;
   updateSlider();
   if (currentIndex === 1) {
-    setTimeout(() => jumpToIndex(totalSlides + 1), 300); // Reset to the last original slide
+    setTimeout(function () {
+      jumpToIndex(totalSlides + 1); 
+    }, 300);
   }
-});
+}
 
-// Initialize Slider
+nextBtn.addEventListener("click", handleNextClick);
+prevBtn.addEventListener("click", handlePrevClick);
+
 jumpToIndex(currentIndex);
 
 /**************************************************logout**********************************************************/
-// logout button
-const logoutBtn = document.getElementById("logOut");
-logoutBtn.addEventListener("click", () => {
-  logout();
-});
 
-function logout() {
-  try {
+// logout button
+var logoutBtn = document.getElementById("logOut");
+
+function handleLogoutClick()
+{
+  logout();
+}
+logoutBtn.addEventListener("click", handleLogoutClick);
+
+
+function logout() 
+{
+  try 
+  {
     localStorage.removeItem("currentUser");
     sessionStorage.removeItem("currentUser");
-  } catch (error) {
+  }
+  catch (error)
+  {
     console.error("Error during logout:", error);
   }
 }
@@ -295,8 +347,10 @@ var arrow = document.querySelector(".arrow");
 var sliderRightBtn = document.querySelector(".slider-right-btn");
 var sliderLeftBtn = document.querySelector(".slider-left-btn");
 
-///////////////////////////Hover effect functions////////////////////
-function handleMouseOverNav() {
+///////////////////////////Hover effect functions///////////////////
+
+function handleMouseOverNav() 
+{
   this.style.textShadow = "1px 1px 1px var(--color4)";
   this.style.transform = "scale(1.3)";
   this.style.textDecoration = "underline";
@@ -304,55 +358,66 @@ function handleMouseOverNav() {
   this.style.textUnderlineOffset = "7px";
 }
 
-function handleMouseOutNav() {
+function handleMouseOutNav() 
+{
   this.style.textShadow = "";
   this.style.transform = "";
   this.style.textDecoration = "";
 }
 
-function handleMouseOverCart() {
+function handleMouseOverCart()
+{
   this.style.color = "#fd7612";
 }
 
-function handleMouseOutCart() {
+function handleMouseOutCart() 
+{
   this.style.color = "var(--color4)";
 }
 
-function handleMouseOverButton() {
+function handleMouseOverButton() 
+{
   this.style.backgroundColor = "#fd7612";
   this.style.color = "var(--mainColor)";
 }
 
-function handleMouseOutButton() {
+function handleMouseOutButton() 
+{
   this.style.backgroundColor = "";
   this.style.color = "#583101";
 }
 
-function handleMouseOverBookCard() {
+function handleMouseOverBookCard() 
+{
   this.style.transform = "scale(0.9)";
 }
 
-function handleMouseOutBookCard() {
+function handleMouseOutBookCard() 
+{
   this.style.transform = "";
 }
 
-function handleMouseOverArrow() {
+function handleMouseOverArrow() 
+{
   this.style.transform = "scale(0.9)";
   this.style.backgroundColor = "#1d5f55";
 }
 
-function handleMouseOutArrow() {
+function handleMouseOutArrow() 
+{
   this.style.transform = "";
   this.style.backgroundColor = "var(--color6)";
 }
 // Hover effect functions for slider buttons
-function handleMouseOverSliderButton() {
+function handleMouseOverSliderButton() 
+{
   this.style.cursor = "pointer";
   this.style.opacity = "0.8";
   this.style.transform = "scale(0.9)";
 }
 
-function handleMouseOutSliderButton() {
+function handleMouseOutSliderButton() 
+{
   this.style.cursor = "";
   this.style.opacity = "";
   this.style.transform = "";
@@ -361,52 +426,61 @@ function handleMouseOutSliderButton() {
 ////// conditions to ensure that the elements exist in the DOM before attempting to attach event listeners to them
 
 // Add event listeners for nav items
-for (var i = 0; i < navItems.length; i++) {
+for (var i = 0; i < navItems.length; i++) 
+{
   navItems[i].addEventListener("mouseover", handleMouseOverNav);
   navItems[i].addEventListener("mouseout", handleMouseOutNav);
 }
 
 // Add event listeners for cart icons
-for (var i = 0; i < cartIcons.length; i++) {
+for (var i = 0; i < cartIcons.length; i++) 
+{
   cartIcons[i].addEventListener("mouseover", handleMouseOverCart);
   cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
 
 // Add event listeners for buttons
-if (loginButton) {
+if (loginButton)
+{
   loginButton.addEventListener("mouseover", handleMouseOverButton);
   loginButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
-if (registerButton) {
+if (registerButton)
+{
   registerButton.addEventListener("mouseover", handleMouseOverButton);
   registerButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
-if (logoutButton) {
+if (logoutButton)
+{
   logoutButton.addEventListener("mouseover", handleMouseOverButton);
   logoutButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
 // Add event listeners for book cards
-for (var i = 0; i < bookCards.length; i++) {
+for (var i = 0; i < bookCards.length; i++) 
+{
   bookCards[i].addEventListener("mouseover", handleMouseOverBookCard);
   bookCards[i].addEventListener("mouseout", handleMouseOutBookCard);
 }
 
 // Add event listeners for arrow
-if (arrow) {
+if (arrow) 
+{
   arrow.addEventListener("mouseover", handleMouseOverArrow);
   arrow.addEventListener("mouseout", handleMouseOutArrow);
 }
 
 // Add event listeners for slider buttons
-if (sliderRightBtn) {
+if (sliderRightBtn) 
+{
   sliderRightBtn.addEventListener("mouseover", handleMouseOverSliderButton);
   sliderRightBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
 
-if (sliderLeftBtn) {
+if (sliderLeftBtn) 
+{
   sliderLeftBtn.addEventListener("mouseover", handleMouseOverSliderButton);
   sliderLeftBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
@@ -416,33 +490,74 @@ var searchInput = document.querySelector(".search");
 var options = document.querySelector("#filter");
 
 // Handle focus event for .search
-function handleFocusSearch() {
+function handleFocusSearch() 
+{
   this.style.outline = "none";
 }
 
 // Handle blur event for .search
-function handleBlurSearch() {
-  this.style.outline = ""; // Reset outline if necessary
+function handleBlurSearch() 
+{
+  this.style.outline = ""; 
 }
 
 // Handle focus event for #options
-function handleFocusOptions() {
+function handleFocusOptions() 
+{
   this.style.outline = "none";
 }
 
 // Handle blur event for #options
-function handleBlurOptions() {
-  this.style.outline = ""; // Reset outline if necessary
+function handleBlurOptions()
+{
+  this.style.outline = "";
 }
 
 // Add event listeners for .search
-if (searchInput) {
+if (searchInput)
+{
   searchInput.addEventListener("focus", handleFocusSearch);
   searchInput.addEventListener("blur", handleBlurSearch);
 }
 
 // Add event listeners for #options
-if (options) {
+if (options)
+{
   options.addEventListener("focus", handleFocusOptions);
   options.addEventListener("blur", handleBlurOptions);
 }
+
+// Function to handle mouseover event
+function handleMouseOver() 
+{
+  this.style.backgroundColor = "rgba(128, 128, 128, 0.333)";
+  
+  var icon = this.querySelector("i");
+  if (icon) 
+  {
+    icon.style.color = "#fd7612";
+  }
+}
+
+// Function to handle mouseout event
+function handleMouseOut()
+{
+  this.style.backgroundColor = "";
+  
+  var icon = this.querySelector("i");
+  if (icon) 
+  {
+    icon.style.color = "";
+  }
+}
+
+var footerItems = document.querySelectorAll("footer li");
+
+for (let i = 0; i < footerItems.length; i++) 
+{
+  var item = footerItems[i];
+  item.addEventListener("mouseover", handleMouseOver);
+  item.addEventListener("mouseout", handleMouseOut);
+}
+
+
