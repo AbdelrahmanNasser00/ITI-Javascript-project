@@ -54,13 +54,13 @@ document.addEventListener("DOMContentLoaded", function () {
       addToCardImg.src = book.cover_image;
 
       var addToCardTitle = document.getElementById("addToCardTitle");
-      addToCardTitle.innerHTML = book.title;
+      // addToCardTitle.innerHTML = book.title;
 
       var authorName = document.getElementById("authorName");
-      authorName.innerHTML = book.author;
+      //authorName.innerHTML = book.author;
 
       var addToCardPrice = document.getElementById("addToCardPrice");
-      addToCardPrice.innerHTML = `Hardcover|${book.price}|Qty: 1`;
+      //addToCardPrice.innerHTML = `Hardcover|${book.price}|Qty: 1`;
 
       var conShopping = document.getElementById("contShop");
 
@@ -75,13 +75,13 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
     `;
-      conShopping.addEventListener("click", function () {
-        styleSheet.insertRule(keyframes2, styleSheet.cssRules.length);
-        addToCardSection.style.animationName = "anim2";
-        addToCardSection.style.animationDuration = "1s";
-        addToCardSection.style.animationFillMode = "forwards";
-        addToCardSection.style.zIndex = -1;
-      });
+      // conShopping.addEventListener("click", function () {
+      //   styleSheet.insertRule(keyframes2, styleSheet.cssRules.length);
+      //   addToCardSection.style.animationName = "anim2";
+      //   addToCardSection.style.animationDuration = "1s";
+      //   addToCardSection.style.animationFillMode = "forwards";
+      //   addToCardSection.style.zIndex = -1;
+      // });
 
       mainContent.appendChild(bookImageSect);
       mainContent.appendChild(bookInfo);
@@ -233,12 +233,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var goToCard = document.getElementById("goToCart");
 
-  goToCard.addEventListener("click",function(){
+  // goToCard.addEventListener("click",function(){
     
-      // console.log('clicked')
-      window.location.href = "../shopping_cart/shopping_cart.html";
+  //     // console.log('clicked')
+  //     window.location.href = "../shopping_cart/shopping_cart.html";
     
-  })
+  // })
 
   var addToCart = document.getElementById("addToCard");
   addToCart.addEventListener("click",function(){
