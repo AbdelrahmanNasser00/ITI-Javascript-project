@@ -19,7 +19,7 @@ var ul = [
   },
   {
     name: "Categories",
-    link: ".categories.html ",
+    link: "#",
   },
   {
     name: "new",
@@ -155,6 +155,10 @@ function getCard(img, name, author, price) {
   `;
 }
 
+
+
+
+
 function loadCategory(categories) {
   var categories_All = document.getElementById("allCategories");
 
@@ -168,24 +172,54 @@ function loadCategory(categories) {
       console.warn(`Category at index ${i} is undefined or empty`);
       continue;  // Skip to the next category
     }
-    categories_All.innerHTML += `<hr> <h1 class="categories-title">${categories[i].title}</h1>
-    <section class="categories-body" id="${categories[i].title}">`;
 
-    var cards = document.getElementById(categories[i].title);
+    // Create the section for each category
+    const categorySection = document.createElement("section");
+    categorySection.classList.add("categories-body");
+    categorySection.id = categories[i].title;
     
+    // Add category title
+    const categoryLine = document.createElement("hr");
+    const categoryTitle = document.createElement("h1");
+    categoryTitle.classList.add("categories-title");
+    categoryTitle.textContent = categories[i].title;
+
+    // Append title and section to categories_All
+    categories_All.appendChild(categoryLine);
+    categories_All.appendChild(categoryTitle);
+    categories_All.appendChild(categorySection);
+
     var bookCategoryKey = Object.keys(categories[i])[0];
     var booksArray = categories[i][bookCategoryKey]; 
+    
+    // Loop over books in the current category
     for (let j = 0; j < booksArray.length; j++) {
       if (booksArray && booksArray[j]) {
         var book = document.createElement("div");
         book.classList.add("book-card");
-        book.innerHTML = getCard(
+        
+        // Create the book card content dynamically
+        const cardContent = getCard(
           booksArray[j].cover_image,
           booksArray[j].title,
           booksArray[j].author,
           booksArray[j].price
         );
-        cards.appendChild(book);
+        book.innerHTML = cardContent;
+
+        // Ensure the book has a valid ID before adding event listener
+        const bookId = booksArray[j].id;
+        if (bookId) {
+          book.addEventListener("click", function () {
+            // Ensure valid ID format for redirection
+            window.location.href = `../product_page/product_page.html?id=${bookId}`;
+          });
+        } else {
+          console.warn(`No valid ID found for book: ${booksArray[j].title}`);
+        }
+
+        // Append book card to category section
+        categorySection.appendChild(book);
       } else {
         console.warn(`No book at index ${j} in category ${categories[i].title}`);
       }
@@ -194,8 +228,6 @@ function loadCategory(categories) {
 }
 
 loadCategory(categories_arr);
-
-
 
 
 /**************************************************logout**********************************************************/

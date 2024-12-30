@@ -228,36 +228,40 @@ const bookCovers = [
 ];
 
 /************************ Fetch data from api ****************************/
-var xhr = new XMLHttpRequest();
 
-var apiUrl = "https://freetestapi.com/api/v1/books";
-var proxyUrl = "https://api.allorigins.win/get?url=";
+if(!localStorage.getItem("apiData")){
+  var xhr = new XMLHttpRequest();
 
-xhr.open("Get", proxyUrl + apiUrl, true);
+  var apiUrl = "https://freetestapi.com/api/v1/books";
+  var proxyUrl = "https://api.allorigins.win/get?url=";
+  
+  xhr.open("Get", proxyUrl + apiUrl, true);
+  
+  xhr.onload = function () {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      var allData = JSON.parse(xhr.responseText);
+      var booksDataContent = JSON.parse(allData.contents);
 
-xhr.onload = function () {
-  if (xhr.status >= 200 && xhr.status < 300) {
-    var allData = JSON.parse(xhr.responseText);
-
-    var booksDataContent = JSON.parse(allData.contents);
-
-    function RandomPrice() {
-      return Math.floor(Math.random() * 81) + 20;
+      function RandomPrice() {
+        return Math.floor(Math.random() * 81) + 20;
+      }
+      /***********************complete api *****************************/
+      for (let i = 0; i < booksDataContent.length; i++) {
+        booksDataContent[i].price = RandomPrice();
+        booksDataContent[i].title = bookCovers[i].title;
+        booksDataContent[i].cover_image = bookCovers[i].image;
+      }
+      booksDataContent.sort((a, b) => a.id - b.id);
+  
+      localStorage.setItem("apiData", JSON.stringify(booksDataContent));
+    } else {
+      console.log("error fetching data ", xhr.statusText);
     }
-    /***********************complete api *****************************/
-    for (let i = 0; i < booksDataContent.length; i++) {
-      booksDataContent[i].price = RandomPrice();
-      booksDataContent[i].title = bookCovers[i].title;
-      booksDataContent[i].cover_image = bookCovers[i].image;
-    }
+  };
+  
+  xhr.send();
+}
 
-    localStorage.setItem("apiData", JSON.stringify(booksDataContent));
-  } else {
-    console.log("error fetching data ", xhr.statusText);
-  }
-};
-
-xhr.send();
 
 function getCard(img, name, author, price) {
   return `
