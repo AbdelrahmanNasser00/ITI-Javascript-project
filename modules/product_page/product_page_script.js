@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var users = JSON.parse(localStorage.getItem("users"));
 
-  var cUser;
+  // var cUser;
 
   var currentUser = JSON.parse(localStorage.getItem("currentUser"));
   console.log(users);
@@ -28,17 +28,25 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
 
       const bookInfo = document.createElement("section");
+
       bookInfo.id = "bookInfo";
+
       bookInfo.innerHTML = `
     <h2 id="title">${book.title}</h2>
+
     <p id="author">${book.author}</p>
+
     <p id="description">${book.description}</p>
+
     <h2 id="price">$${book.price}</h2>
+
     <div id="tags">
         <span class="tag">Year: ${book.publication_year}</span>
         ${book.genre.map((g) => `<span class="tag">${g}</span>`).join(" ")}
     </div>
+
     <button title="add to favourite" id="wishlistButton"><i class="fas fa-heart"></i></button>
+
     <button id="addToCard"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 `;
 
@@ -171,7 +179,9 @@ document.addEventListener("DOMContentLoaded", function () {
   recommendedDiv.id = "recommended";
 
   recommendedBooks.forEach((book) => {
+
     var item = document.createElement("div");
+
     item.setAttribute("data-id", book.id);
 
     item.classList.add("item");
@@ -197,6 +207,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bookImg.addEventListener("mouseover", () => {
     var width = parseInt(bookImg.width);
     var height = parseInt(bookImg.height);
+
     bookImg.width = width + 10;
     bookImg.height = height + 10;
   });
@@ -204,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
   bookImg.addEventListener("mouseleave", () => {
     var width = parseInt(bookImg.width);
     var height = parseInt(bookImg.height);
+
     bookImg.width = width - 10;
     bookImg.height = height - 10;
   });
@@ -220,9 +232,10 @@ document.addEventListener("DOMContentLoaded", function () {
 `;
 
   var goToCard = document.getElementById("goToCart");
+
   goToCard.addEventListener("click",function(){
     
-      console.log('clicked')
+      // console.log('clicked')
       window.location.href = "../shopping_cart/shopping_cart.html";
     
   })
@@ -249,7 +262,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
     localStorage.setItem("users", JSON.stringify(users));
-    console.log(users);
+
+    // console.log(users);
   });
 
 });

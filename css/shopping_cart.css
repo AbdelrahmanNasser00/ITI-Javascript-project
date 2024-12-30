@@ -115,7 +115,9 @@ main#shopCart {
     cursor: pointer;
     transition: background-color 0.3s;
 }
-
+button{
+    margin-right: 5px;
+}
 #itemInfo button#goToItem:hover,#itemInfo button#addPaymentMethod:hover {
     background-color: var(--color6); /* Slightly lighter green on hover */
 }
