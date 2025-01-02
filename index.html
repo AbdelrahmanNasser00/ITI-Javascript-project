@@ -41,8 +41,7 @@
         <div class="secton1-img">
           <img
             src="assets/img/creative-composition-world-book-day.png"
-            alt=""
-          />
+            alt="" />
         </div>
       </section>
       <hr />
@@ -68,25 +67,21 @@
             type="search"
             class="search"
             id="search"
-            placeholder="Search"
-          />
+            placeholder="Search" />
         </div>
         <!---------------------------------  FILTERS  ------------------------------------------------->
 
         <div class="filter-bar">
-          <label for="filter"
-            ><span class="filter"><i class="fa-solid fa-filter"></i></span
-          ></label>
-          <input
-            list="options"
-            id="filter"
-            name="filter"
-            placeholder="Filter Books"
-          />
-          <datalist id="options">
-            <option value="price: High To Low"></option>
-            <option value="price: Low To High"></option>
-          </datalist>
+          <label for="filter">
+            <span class="filter"><i class="fa-solid fa-filter"></i></span>
+          </label>
+          <div class="custom-select-wrapper">
+            <select id="options" class="custom-select">
+              <option value="default">Default</option>
+              <option value="High To Low">High To Low</option>
+              <option value="Low To High">Low To High</option>
+            </select>
+          </div>
         </div>
       </section>
 
@@ -97,8 +92,13 @@
 
     <footer id="footer">
       <div>
-        <img src="assets/img/logo.svg" alt="">
-        <p>“Book Haven” is a pioneer in the field of book selling in Egypt, and it includes an exceptional selection of the most prominent and important Arabic and foreign titles at prices within the reader’s reach.</p>
+        <img src="assets/img/logo.svg" alt="" />
+        <p>
+          “Book Haven” is a pioneer in the field of book selling in Egypt, and
+          it includes an exceptional selection of the most prominent and
+          important Arabic and foreign titles at prices within the reader’s
+          reach.
+        </p>
       </div>
       <div>
         <h2>Categories :</h2>
@@ -115,15 +115,26 @@
       <div>
         <h2>Contact Us :</h2>
         <ul>
-          <li><a href=""><i class="fa-brands fa-facebook"></i>book haven</a></li>
-          <li><a href=""><i class="fa-brands fa-instagram"></i>book haven</a></li>
-          <li><a href=""><i class="fa-brands fa-whatsapp"></i>01234567890</a></li>
-          <li><a href=""><i class="fa-brands fa-tiktok"></i>book haven</a></li>
-          <li><a href=""><i class="fa-solid fa-envelope"></i>bookhaven@gmail.com</a></li>
+          <li>
+            <a href=""><i class="fa-brands fa-facebook"></i>book haven</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-instagram"></i>book haven</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-whatsapp"></i>01234567890</a>
+          </li>
+          <li>
+            <a href=""><i class="fa-brands fa-tiktok"></i>book haven</a>
+          </li>
+          <li>
+            <a href=""
+              ><i class="fa-solid fa-envelope"></i>bookhaven@gmail.com</a
+            >
+          </li>
         </ul>
       </div>
     </footer>
-    
 
     <script type="module" src="main.js"></script>
     <script type="module" src="api/filter.js"></script>

@@ -35,8 +35,7 @@ var list = document.getElementById("navLinks");
 var search = document.getElementById("search");
 
 function navLinks() {
-  for (var i = 0; i < ul.length; i++) 
-  {
+  for (var i = 0; i < ul.length; i++) {
     var listItem = document.createElement("li");
     listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
     list.append(listItem);
@@ -45,8 +44,7 @@ function navLinks() {
 
 navLinks();
 
-list.style.cssText = 
-  `
+list.style.cssText = `
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,8 +54,7 @@ list.style.cssText =
 
 /************************ CARDS***********************/
 
-function getCard(img, name, author, price) 
-{
+function getCard(img, name, author, price) {
   return `
               <img src=${img} alt="" class="book-img">
               <h3 class="book-name">${name}</h3>
@@ -66,12 +63,10 @@ function getCard(img, name, author, price)
   `;
 }
 
-function displayAllBooks(arr) 
-{
+function displayAllBooks(arr) {
   var cards = document.getElementById("cards");
   cards.innerHTML = "";
-  for (let i = 0; i < arr.length; i++) 
-  {
+  for (let i = 0; i < arr.length; i++) {
     var book = document.createElement("div");
     book.classList.add("book-card");
     book.innerHTML = getCard(
@@ -80,8 +75,7 @@ function displayAllBooks(arr)
       arr[i].author,
       arr[i].price
     );
-    book.addEventListener("click", function () 
-    {
+    book.addEventListener("click", function () {
       window.location.href =
         "modules/product_page/product_page.html?id=" + localBooksData[i].id;
     });
@@ -98,28 +92,25 @@ displayAllBooks(localBooksData);
 /***************even listener to get selected value of filter ********************/
 
 var selectedValue;
-var filterInput = document.getElementById("filter");
+var filterInput = document.getElementById("options");
 
-filterInput.addEventListener("input", function () 
-{
+filterInput.addEventListener("input", function () {
   selectedValue = filterInput.value;
   displayFilterBooks(); // when user type any filter fun check function
 });
 
-function displayFilterBooks()
-{
+function displayFilterBooks() {
   var cards = document.getElementById("cards");
   cards.innerHTML = ""; // make page empty to display new books data
 
-  switch (selectedValue)
-  {
-    case "":
+  switch (selectedValue) {
+    case "default":
       displayAllBooks(localBooksData); // if user remove all filter
       break;
-    case "price: Low To High":
+    case "Low To High":
       sortBooksLowToHigh(); // this function i imported it from filter.js
       break;
-    case "price: High To Low":
+    case "High To Low":
       sortBooksHighToLow(); // this function i imported it from filter.js
       break;
     case "Author":
@@ -134,18 +125,15 @@ function displayFilterBooks()
 
 /************************************************ SEARCH******************************************************/
 
-function searchBooks()
-{
+function searchBooks() {
   var value = this.value;
   var valueLowerCase = value.toLowerCase();
   var arr = [];
 
-  for (var i = 0; i < localBooksData.length; i++) 
-  {
+  for (var i = 0; i < localBooksData.length; i++) {
     var titleLowerCase = localBooksData[i].title.toLowerCase();
 
-    if (titleLowerCase.includes(valueLowerCase)) 
-    {
+    if (titleLowerCase.includes(valueLowerCase)) {
       arr.push(localBooksData[i]);
     }
   }
@@ -159,8 +147,7 @@ search.addEventListener("input", searchBooks);
 
 var arrow = document.querySelector("#arrow");
 
-function scrollToTop() 
-{
+function scrollToTop() {
   window.scrollTo(0, 0);
 }
 
@@ -170,8 +157,7 @@ arrow.addEventListener("click", scrollToTop);
 
 var sliderArr = localBooksData.slice(0, 10);
 
-function displaySlider() 
-{
+function displaySlider() {
   var slider = document.getElementById("slider");
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -195,8 +181,7 @@ function displaySlider()
 
   slider.append(SliderContainer);
 
-  for (var i = 0; i < sliderArr.length; i++)
-  {
+  for (var i = 0; i < sliderArr.length; i++) {
     var SliderContainer = document.createElement("div");
     SliderContainer.classList.add("book-card", "slide");
     SliderContainer.innerHTML = getCard(
@@ -228,7 +213,6 @@ function displaySlider()
   );
 
   slider.append(SliderContainer);
-
 }
 
 displaySlider();
@@ -237,8 +221,8 @@ var track = document.querySelector(".slider-track");
 var prevBtn = document.querySelector(".slider-left-btn");
 var nextBtn = document.querySelector(".slider-right-btn");
 
-var currentIndex = 2; 
-var totalSlides = sliderArr.length; 
+var currentIndex = 2;
+var totalSlides = sliderArr.length;
 var slidesVisible = 3;
 var slideWidth = 100 / slidesVisible;
 
@@ -248,60 +232,50 @@ var sliderTrack = document.createElement("div");
 sliderTrack.classList.add("slider-track");
 slider.append(sliderTrack);
 
-function filterAndAppendSlides() 
-{
+function filterAndAppendSlides() {
   var slides = [];
-  
-  for (var i = 0; i < slider.children.length; i++) 
-    {
+
+  for (var i = 0; i < slider.children.length; i++) {
     var child = slider.children[i];
-    if (child.classList.contains("slide")) 
-    {
+    if (child.classList.contains("slide")) {
       slides.push(child);
     }
   }
-  for (var j = 0; j < slides.length; j++) 
-  {
+  for (var j = 0; j < slides.length; j++) {
     sliderTrack.appendChild(slides[j]);
   }
 }
 
 filterAndAppendSlides();
 
-
-
-function updateSlider() 
-{
+function updateSlider() {
   var offset = -(currentIndex * slideWidth);
   sliderTrack.style.transition = "transform 0.3s ease-in-out";
   sliderTrack.style.transform = `translateX(${offset}%)`;
 }
 
-function jumpToIndex(index) 
-{
+function jumpToIndex(index) {
   currentIndex = index;
   sliderTrack.style.transition = "none";
   sliderTrack.style.transform = `translateX(-${currentIndex * slideWidth}%)`;
 }
 
-function handleNextClick() 
-{
+function handleNextClick() {
   currentIndex++;
   updateSlider();
   if (currentIndex === totalSlides + 2) {
     setTimeout(function () {
-      jumpToIndex(2); 
+      jumpToIndex(2);
     }, 300);
   }
 }
 
-function handlePrevClick() 
-{
+function handlePrevClick() {
   currentIndex--;
   updateSlider();
   if (currentIndex === 1) {
     setTimeout(function () {
-      jumpToIndex(totalSlides + 1); 
+      jumpToIndex(totalSlides + 1);
     }, 300);
   }
 }
@@ -316,22 +290,16 @@ jumpToIndex(currentIndex);
 // logout button
 var logoutBtn = document.getElementById("logOut");
 
-function handleLogoutClick()
-{
+function handleLogoutClick() {
   logout();
 }
 logoutBtn.addEventListener("click", handleLogoutClick);
 
-
-function logout() 
-{
-  try 
-  {
+function logout() {
+  try {
     localStorage.removeItem("currentUser");
     sessionStorage.removeItem("currentUser");
-  }
-  catch (error)
-  {
+  } catch (error) {
     console.error("Error during logout:", error);
   }
 }
@@ -349,8 +317,7 @@ var sliderLeftBtn = document.querySelector(".slider-left-btn");
 
 ///////////////////////////Hover effect functions///////////////////
 
-function handleMouseOverNav() 
-{
+function handleMouseOverNav() {
   this.style.textShadow = "1px 1px 1px var(--color4)";
   this.style.transform = "scale(1.3)";
   this.style.textDecoration = "underline";
@@ -358,66 +325,55 @@ function handleMouseOverNav()
   this.style.textUnderlineOffset = "7px";
 }
 
-function handleMouseOutNav() 
-{
+function handleMouseOutNav() {
   this.style.textShadow = "";
   this.style.transform = "";
   this.style.textDecoration = "";
 }
 
-function handleMouseOverCart()
-{
+function handleMouseOverCart() {
   this.style.color = "#fd7612";
 }
 
-function handleMouseOutCart() 
-{
+function handleMouseOutCart() {
   this.style.color = "var(--color4)";
 }
 
-function handleMouseOverButton() 
-{
+function handleMouseOverButton() {
   this.style.backgroundColor = "#fd7612";
   this.style.color = "var(--mainColor)";
 }
 
-function handleMouseOutButton() 
-{
+function handleMouseOutButton() {
   this.style.backgroundColor = "";
   this.style.color = "#583101";
 }
 
-function handleMouseOverBookCard() 
-{
+function handleMouseOverBookCard() {
   this.style.transform = "scale(0.9)";
 }
 
-function handleMouseOutBookCard() 
-{
+function handleMouseOutBookCard() {
   this.style.transform = "";
 }
 
-function handleMouseOverArrow() 
-{
+function handleMouseOverArrow() {
   this.style.transform = "scale(0.9)";
   this.style.backgroundColor = "#1d5f55";
 }
 
-function handleMouseOutArrow() 
-{
+function handleMouseOutArrow() {
   this.style.transform = "";
   this.style.backgroundColor = "var(--color6)";
 }
 // Hover effect functions for slider buttons
-function handleMouseOverSliderButton() 
-{
+function handleMouseOverSliderButton() {
   this.style.cursor = "pointer";
   this.style.opacity = "0.8";
   this.style.transform = "scale(0.9)";
 }
 
-function handleMouseOutSliderButton() 
-{
+function handleMouseOutSliderButton() {
   this.style.cursor = "";
   this.style.opacity = "";
   this.style.transform = "";
@@ -426,61 +382,52 @@ function handleMouseOutSliderButton()
 ////// conditions to ensure that the elements exist in the DOM before attempting to attach event listeners to them
 
 // Add event listeners for nav items
-for (var i = 0; i < navItems.length; i++) 
-{
+for (var i = 0; i < navItems.length; i++) {
   navItems[i].addEventListener("mouseover", handleMouseOverNav);
   navItems[i].addEventListener("mouseout", handleMouseOutNav);
 }
 
 // Add event listeners for cart icons
-for (var i = 0; i < cartIcons.length; i++) 
-{
+for (var i = 0; i < cartIcons.length; i++) {
   cartIcons[i].addEventListener("mouseover", handleMouseOverCart);
   cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
 
 // Add event listeners for buttons
-if (loginButton)
-{
+if (loginButton) {
   loginButton.addEventListener("mouseover", handleMouseOverButton);
   loginButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
-if (registerButton)
-{
+if (registerButton) {
   registerButton.addEventListener("mouseover", handleMouseOverButton);
   registerButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
-if (logoutButton)
-{
+if (logoutButton) {
   logoutButton.addEventListener("mouseover", handleMouseOverButton);
   logoutButton.addEventListener("mouseout", handleMouseOutButton);
 }
 
 // Add event listeners for book cards
-for (var i = 0; i < bookCards.length; i++) 
-{
+for (var i = 0; i < bookCards.length; i++) {
   bookCards[i].addEventListener("mouseover", handleMouseOverBookCard);
   bookCards[i].addEventListener("mouseout", handleMouseOutBookCard);
 }
 
 // Add event listeners for arrow
-if (arrow) 
-{
+if (arrow) {
   arrow.addEventListener("mouseover", handleMouseOverArrow);
   arrow.addEventListener("mouseout", handleMouseOutArrow);
 }
 
 // Add event listeners for slider buttons
-if (sliderRightBtn) 
-{
+if (sliderRightBtn) {
   sliderRightBtn.addEventListener("mouseover", handleMouseOverSliderButton);
   sliderRightBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
 
-if (sliderLeftBtn) 
-{
+if (sliderLeftBtn) {
   sliderLeftBtn.addEventListener("mouseover", handleMouseOverSliderButton);
   sliderLeftBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
@@ -490,74 +437,61 @@ var searchInput = document.querySelector(".search");
 var options = document.querySelector("#filter");
 
 // Handle focus event for .search
-function handleFocusSearch() 
-{
+function handleFocusSearch() {
   this.style.outline = "none";
 }
 
 // Handle blur event for .search
-function handleBlurSearch() 
-{
-  this.style.outline = ""; 
+function handleBlurSearch() {
+  this.style.outline = "";
 }
 
 // Handle focus event for #options
-function handleFocusOptions() 
-{
+function handleFocusOptions() {
   this.style.outline = "none";
 }
 
 // Handle blur event for #options
-function handleBlurOptions()
-{
+function handleBlurOptions() {
   this.style.outline = "";
 }
 
 // Add event listeners for .search
-if (searchInput)
-{
+if (searchInput) {
   searchInput.addEventListener("focus", handleFocusSearch);
   searchInput.addEventListener("blur", handleBlurSearch);
 }
 
 // Add event listeners for #options
-if (options)
-{
+if (options) {
   options.addEventListener("focus", handleFocusOptions);
   options.addEventListener("blur", handleBlurOptions);
 }
 
 // Function to handle mouseover event
-function handleMouseOver() 
-{
+function handleMouseOver() {
   this.style.backgroundColor = "rgba(128, 128, 128, 0.333)";
-  
+
   var icon = this.querySelector("i");
-  if (icon) 
-  {
+  if (icon) {
     icon.style.color = "#fd7612";
   }
 }
 
 // Function to handle mouseout event
-function handleMouseOut()
-{
+function handleMouseOut() {
   this.style.backgroundColor = "";
-  
+
   var icon = this.querySelector("i");
-  if (icon) 
-  {
+  if (icon) {
     icon.style.color = "";
   }
 }
 
 var footerItems = document.querySelectorAll("footer li");
 
-for (let i = 0; i < footerItems.length; i++) 
-{
+for (let i = 0; i < footerItems.length; i++) {
   var item = footerItems[i];
   item.addEventListener("mouseover", handleMouseOver);
   item.addEventListener("mouseout", handleMouseOut);
 }
-
-
