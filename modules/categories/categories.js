@@ -1,6 +1,6 @@
 /****************************TO GET ALL BOOKS FROM LOCAL STORAGE********************************** */
-
 var localBooksData = JSON.parse(localStorage.getItem("apiData"));
+import { handleUserState, logout } from "../shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -37,7 +37,7 @@ function navLinks() {
     list.append(listItem);
   }
 }
-
+handleUserState();
 navLinks();
 
 list.style.cssText = `
@@ -51,7 +51,6 @@ list.style.cssText = `
 
 /********************************************************arrow***************************************************/
 
-
 var arrow = document.querySelector("#arrow");
 
 function scrollToTop() {
@@ -62,8 +61,6 @@ arrow.addEventListener("click", scrollToTop);
 
 /****************************************************FILL Books Categories**************************************************/
 
-
-
 var categories_arr = [
   { classicBooks: [], title: "Classic" },
   { fictionBooks: [], title: "Fiction" },
@@ -71,11 +68,9 @@ var categories_arr = [
   { romanceBooks: [], title: "Romance" },
   { adventureBooks: [], title: "Adventure" },
   { fantasyBooks: [], title: "Fantasy" },
-  { epicBooks: [], title: "Epic" }
+  { epicBooks: [], title: "Epic" },
 ];
 
-
-  
 for (let i = 0; i < localBooksData.length; i++) {
   if (
     localBooksData[i].genre[0] === "Classic" ||
@@ -84,7 +79,6 @@ for (let i = 0; i < localBooksData.length; i++) {
     categories_arr[0].classicBooks.push(localBooksData[i]);
   }
 }
-
 
 for (let i = 0; i < localBooksData.length; i++) {
   if (
@@ -95,7 +89,6 @@ for (let i = 0; i < localBooksData.length; i++) {
   }
 }
 
-
 for (let i = 0; i < localBooksData.length; i++) {
   if (
     localBooksData[i].genre[0] === "Dystopian" ||
@@ -104,7 +97,6 @@ for (let i = 0; i < localBooksData.length; i++) {
     categories_arr[2].dystopianBooks.push(localBooksData[i]);
   }
 }
-
 
 for (let i = 0; i < localBooksData.length; i++) {
   if (
@@ -142,10 +134,6 @@ for (let i = 0; i < localBooksData.length; i++) {
   }
 }
 
-
-
-
-
 function getCard(img, name, author, price) {
   return `
               <img src=${img} alt="" class="book-img">
@@ -154,10 +142,6 @@ function getCard(img, name, author, price) {
               <p class="book-price"><span class="pound">EGP </span>${price}</p>
   `;
 }
-
-
-
-
 
 function loadCategory(categories) {
   var categories_All = document.getElementById("allCategories");
@@ -170,14 +154,14 @@ function loadCategory(categories) {
   for (let i = 0; i < categories.length; i++) {
     if (!categories[i]) {
       console.warn(`Category at index ${i} is undefined or empty`);
-      continue;  // Skip to the next category
+      continue; // Skip to the next category
     }
 
     // Create the section for each category
     const categorySection = document.createElement("section");
     categorySection.classList.add("categories-body");
     categorySection.id = categories[i].title;
-    
+
     // Add category title
     const categoryLine = document.createElement("hr");
     const categoryTitle = document.createElement("h1");
@@ -190,14 +174,14 @@ function loadCategory(categories) {
     categories_All.appendChild(categorySection);
 
     var bookCategoryKey = Object.keys(categories[i])[0];
-    var booksArray = categories[i][bookCategoryKey]; 
-    
+    var booksArray = categories[i][bookCategoryKey];
+
     // Loop over books in the current category
     for (let j = 0; j < booksArray.length; j++) {
       if (booksArray && booksArray[j]) {
         var book = document.createElement("div");
         book.classList.add("book-card");
-        
+
         // Create the book card content dynamically
         const cardContent = getCard(
           booksArray[j].cover_image,
@@ -221,7 +205,9 @@ function loadCategory(categories) {
         // Append book card to category section
         categorySection.appendChild(book);
       } else {
-        console.warn(`No book at index ${j} in category ${categories[i].title}`);
+        console.warn(
+          `No book at index ${j} in category ${categories[i].title}`
+        );
       }
     }
   }
@@ -229,23 +215,14 @@ function loadCategory(categories) {
 
 loadCategory(categories_arr);
 
-
 /**************************************************logout**********************************************************/
 
 // logout button
-const logoutBtn = document.getElementById("logOut");
+const logoutBtn = document.getElementById("logout");
 logoutBtn.addEventListener("click", () => {
   logout();
 });
 
-function logout() {
-  try {
-    localStorage.removeItem("currentUser");
-    sessionStorage.removeItem("currentUser");
-  } catch (error) {
-    console.error("Error during logout:", error);
-  }
-}
 /**************************************************************************************************** */
 
 var navItems = document.querySelectorAll(".navIl");

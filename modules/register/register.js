@@ -1,12 +1,4 @@
-var currentUser = localStorage.getItem("currentUser");
-if (currentUser) window.location.href = "../../index.html";
-else {
-  currentUser = sessionStorage.getItem("currentUser");
-  if (currentUser) window.location.href = "../../index.html";
-  else {
-    loadRegisterPage();
-  }
-}
+loadRegisterPage();
 function loadRegisterPage() {
   document.addEventListener("DOMContentLoaded", () => {
     const registerContainer = document.getElementById("registerCard");

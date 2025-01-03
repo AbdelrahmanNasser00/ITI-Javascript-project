@@ -1,10 +1,11 @@
 /****************************TO GET ALL BOOKS FROM LOCAL STORAGE********************************** */
 
-var localBooksData = JSON.parse(localStorage.getItem("apiData"));
+var localBooksData = JSON.parse(localStorage.getItem("apiData") || []);
 
 /***************************************IMPORT FILTERS*****************************************/
 
 import { sortBooksHighToLow, sortBooksLowToHigh } from "./api/filter.js";
+import { handleUserState } from "./modules/shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -43,6 +44,7 @@ function navLinks() {
 }
 
 navLinks();
+handleUserState();
 
 list.style.cssText = `
     display: flex;
@@ -288,7 +290,7 @@ jumpToIndex(currentIndex);
 /**************************************************logout**********************************************************/
 
 // logout button
-var logoutBtn = document.getElementById("logOut");
+var logoutBtn = document.getElementById("logout");
 
 function handleLogoutClick() {
   logout();

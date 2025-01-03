@@ -20,14 +20,13 @@
           <ul id="navLinks"></ul>
         </nav>
         <div class="head-btns">
-          <a href="../../modules/login/login.html" class="login">Login</a>
-          <a href="../../modules/register/register.html" class="register"
+          <a href="../../modules/login/login.html" id="login" class="login">Login</a>
+          <a href="../../modules/register/register.html" id="register" class="register"
             >Register</a
           >
           <a
             href="../../index.html"
-            onclick="logout()"
-            id="logOut"
+            id="logout"
             class="logout"
             >Log out</a
           >
@@ -59,8 +58,9 @@
 
     <footer></footer>
     <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
-
-    <script type="module" src="categories.js"></script>
-    <script type="module" src="../../api/filter.js"></script>
+    <!-- <script type="module" src="../../main.js" defer></script> -->
+    <script type="module" src="../shared.js" ></script>
+    <script type="module" src="categories.js" ></script>
+    <script type="module" src="../../api/filter.js" ></script>
   </body>
 </html>

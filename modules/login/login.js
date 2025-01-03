@@ -1,13 +1,4 @@
-// check if user login or not
-var currentUser = localStorage.getItem("currentUser");
-if (currentUser) window.location.href = "../../index.html";
-else {
-  currentUser = sessionStorage.getItem("currentUser");
-  if (currentUser) window.location.href = "../../index.html";
-  else {
-    loadLoginPage();
-  }
-}
+loadLoginPage();
 function loadLoginPage() {
   document.addEventListener("DOMContentLoaded", () => {
     const loginContainer = document.getElementById("loginCard");
