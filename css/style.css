@@ -22,7 +22,7 @@ html {
 /*********************************************************HOME PAGE********************************************************/
 body {
     /* background-color: var(--mainColor); */
-    background-image: linear-gradient(253deg, var(--mainColor), #fffafe);
+    background-image: linear-ient(253deg, var(--mainColor), #fffafe);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -67,7 +67,7 @@ nav {
 }
 
 
-.fa-cart-shopping {
+.fa-cart-shopping, .fa-heart {
     color: var(--color4);
     font-size: 20px;
     transition: all 0.3s;

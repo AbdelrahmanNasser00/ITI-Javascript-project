@@ -3,10 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
   
     var users = JSON.parse(localStorage.getItem("users"));
   
-    var currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+    var currentUser = JSON.parse(sessionStorage.getItem("currentUser")) == null?JSON.parse(localStorage.getItem("currentUser")):JSON.parse(sessionStorage.getItem("currentUser"));
 
-    //   console.log(users);
-    //   console.log(currentUser);
+    
   
     var cUser;
     var addedToCardBooksIds = [];

@@ -1,15 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   var id = new URLSearchParams(window.location.search).get("id");
-
   var apiData = JSON.parse(localStorage.getItem("apiData"));
-
   var users = JSON.parse(localStorage.getItem("users"));
 
   // var cUser;
 
-  var currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
-  // console.log(users);
-  // console.log(currentUser);
+  var currentUser = JSON.parse(sessionStorage.getItem("currentUser")) == null?JSON.parse(localStorage.getItem("currentUser")):JSON.parse(sessionStorage.getItem("currentUser"));
 
   var addToCardSection = document.getElementById("addToCardSection");
 

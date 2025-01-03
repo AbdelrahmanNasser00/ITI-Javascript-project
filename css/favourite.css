@@ -1,9 +1,11 @@
+/* Global reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: content-box;
 }
 
+/* Root colors */
 :root {
     --mainColor: #fcf7e6;
     --color1: #7f5539;
@@ -13,112 +15,128 @@
     --color5: #10352f;
     --color6: #164a42;
     --color7: #1d5f55;
-    --color8: #f5e0e6;
+    --color8: #d37892;
 }
 
 body {
-    background-image: linear-gradient(253deg, var(--mainColor), #fffafe,var(--color8));
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #2C3E50;
-    animation: fadeIn 1.5s ease-out;
-    height:100vh
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(253deg, var(--mainColor), #fffafe);
+ 
+    color: var(--color4); 
 }
-#header{
-    margin-top: 2%;
+
+/* Header styles */
+nav#header {
+    background-color: var(--color8); 
+    color: var(--mainColor);
     text-align: center;
+    padding: 15px;
+    font-size: 24px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#header h2{
-    text-shadow: 0px 0px 10px var(--color2);
-}
-
-#favDiv {
+/* Main container */
+main#favDiv {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
     border-radius: 8px;
-    overflow: auto;
-    margin: 3% auto 0;
-    max-width: 1100px;
-    background-color: #fffafe;
-    height: 100%;
-    box-shadow: 0px 0px 15px var(--color2);
-    box-sizing: border-box; 
-    padding: 5px;
-    box-shadow: 0px 0px 15px var(--mainColor);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Media query for screens wider than 600px */
-@media (min-width: 1101px) {
-    #favDiv {
-        margin: calc(100%-1101px);  
-    }
+/* Item container */
+.item {
+    display: flex; 
+    margin: 15px 0;
+    border-bottom: 1px solid var(--color2);
+    padding-bottom: 15px;
 }
-.item1{
-    background-color: var(--color8);
-    
+
+.item:last-child {
+    border-bottom: none; 
 }
-.item2{
-    background-color: var(--mainColor);
-}
-#favDiv .item{
-    
-    height: 30%;
-    margin: 10px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 15px var(--mainColor);
+
+
+#imgDiv {
+    flex: 1; 
+    max-width: 150px;
+    margin-right: 20px;
     display: flex;
-    align-content: center;
-    transition-duration: .5s;
+    align-items: center;
+    justify-content: center;
 }
-#favDiv .item:hover{
-    transform: scale(1.04);
-}
-#favDiv .item #imgDiv{
-    margin: 16px 0;
-    width: 40%;
-    text-align: center;
-}
-#favDiv .item #imgDiv img{
-    height: 100%;
+
+#imgDiv img {
+    width: 100%;
+    height: auto;
     border-radius: 8px;
-    box-shadow: 0px 0px 15px var(--mainColor);
-    transition-duration:.5s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-#itemInfo{
-    margin: 20px 30px 20px 0;
-    color: var(--color1);
-
+/* Item information */
+#itemInfo {
+    margin: auto;
+    flex: 2; /* Take up 2/3 of the width */
 }
-#author{
-    font-weight: 600;
-    font-style: italic;
-    text-shadow: 0px 0px 15px var(--mainColor);
-}
-#description{
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-left: 12px;
-    margin-top: 4px;
-    margin-bottom: 4px;
-    font-size: 13px;
-    text-shadow: 0px 0px 15px var(--mainColor);
 
+#itemInfo h2#title {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--color3); /* Slightly muted green */
 }
-#goToItem{
-    border-radius: 3px;
-    box-shadow: 4px 4px 15px var(--mainColor);
-    border: 1px solid var(--color1);
-    margin-top: 8px;
-    background-color: var(--color1);
-    padding: 8px;
+
+#itemInfo p#author {
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: var(--color6); /* Medium green */
+}
+
+#itemInfo p#description {
     font-size: 14px;
-    color: #f5e0e6;
-    transition-duration: .3s;
+    margin-bottom: 10px;
+    color: var(--color4); /* Darker text */
 }
-#goToItem:hover{
-    transform: scale(1.05,1.1);
-    /* background-color: #7f553965; */
-    box-shadow: 6px 6px 25px var(--mainColor);
-    font-weight: bold;
+
+#itemInfo h3#price {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: var(--color1); /* Highlighted brown */
+}
+
+#itemInfo button#goToItem,#itemInfo button#addPaymentMethod {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: var(--color8); /* Deep green */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, opacity .5s;
+}
+button{
+    margin-right: 5px;
+}
+#itemInfo button#goToItem:hover,#itemInfo button#addPaymentMethod:hover {
+    background-color: var(--color8); 
+    opacity: .8;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .item {
+        flex-direction: column; 
+        align-items: center;
+    }
+
+    #imgDiv {
+        max-width: 100%; 
+        margin-bottom: 15px;
+    }
+
+    #itemInfo {
+        text-align: center; 
+    }
 }
