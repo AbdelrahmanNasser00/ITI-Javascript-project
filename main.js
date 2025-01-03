@@ -30,10 +30,7 @@ var ul = [
     name: "new",
     link: "#",
   },
-  {
-    name: "Favorites❤️",
-    link: "./modules/favourites/favourite.html",
-  },
+
 ];
 
 var list = document.getElementById("navLinks");
