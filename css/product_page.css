@@ -29,11 +29,10 @@ body {
     position: absolute;
     font-size: 16px;
     padding: 12px 10px;
-    background-color: var(--color1);
-    border: 1px solid var(--color1);
+    background-color: var(--color6);
+    border: 1px solid var(--color6);
     color: white;
     border-radius: 6px;
-    margin: 5px;
     transition-duration: .5s;
 }
 #backToHome:hover{
