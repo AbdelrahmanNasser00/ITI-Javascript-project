@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
       const bookInfo = document.createElement("section");
 
       bookInfo.id = "bookInfo";
-
       bookInfo.innerHTML = `
     <h2 id="title">${book.title}</h2>
 
@@ -34,11 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     <p id="description">${book.description}</p>
 
-    <h2 id="price">$${book.price}</h2>
+    <h2 id="price">EGP ${book.price}</h2>
 
     <div id="tags">
         <span class="tag">Year: ${book.publication_year}</span>
         ${book.genre.map((g) => `<span class="tag">${g}</span>`).join(" ")}
+      
     </div>
 
     <button title="add to favourite" id="wishlistButton"><i class="fas fa-heart"></i></button>

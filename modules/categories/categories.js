@@ -303,6 +303,10 @@ for (var i = 0; i < cartIcons.length; i++) {
   cartIcons[i].addEventListener("mouseover", handleMouseOverCart);
   cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
+for (var i = 0; i < cartIcons.length; i++) {
+  favIcons[i].addEventListener("mouseover", handleMouseOverCart);
+  favIcons[i].addEventListener("mouseout", handleMouseOutCart);
+}
 
 // Add event listeners for buttons
 if (loginButton) {

@@ -329,6 +329,7 @@ function logout() {
 
 var navItems = document.querySelectorAll(".navIl");
 var cartIcons = document.querySelectorAll(".fa-cart-shopping");
+var favIcons = document.querySelectorAll(".fa-heart");
 var loginButton = document.querySelector(".login");
 var registerButton = document.querySelector(".register");
 var logoutButton = document.querySelector(".logout");
@@ -413,6 +414,10 @@ for (var i = 0; i < navItems.length; i++) {
 for (var i = 0; i < cartIcons.length; i++) {
   cartIcons[i].addEventListener("mouseover", handleMouseOverCart);
   cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
+}
+for (var i = 0; i < cartIcons.length; i++) {
+  favIcons[i].addEventListener("mouseover", handleMouseOverCart);
+  favIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
 
 // Add event listeners for buttons

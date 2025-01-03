@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  
     var apiData = JSON.parse(localStorage.getItem("apiData"));
   
     var users = JSON.parse(localStorage.getItem("users"));
@@ -76,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
       itemInfo.appendChild(description);
   
       var price = document.createElement("h3");
-      price.innerText = addedToCardBooks[i].price;
+      price.innerText = "EGP "+ addedToCardBooks[i].price;
       price.id = "price";
       itemInfo.appendChild(price);
   

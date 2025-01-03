@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
   var apiData = JSON.parse(localStorage.getItem("apiData"));
   var users = JSON.parse(localStorage.getItem("users"));
   var currentUser = JSON.parse(sessionStorage.getItem("currentUser")) == null
@@ -29,16 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  console.log(favouriteBooks);
-
   var favDiv = document.getElementById("favDiv");
 
   // Create favorite books display
-  for (var i = 0; i < favouriteBooks.length; i++) {
-    var book = favouriteBooks[i];
-
+  favouriteBooks.forEach((book, index) => {
     var item = document.createElement("section");
-    item.classList = i % 2 === 0 ? "item item1" : "item item2";
+    item.classList = index % 2 === 0 ? "item item1" : "item item2";
     item.style.transition = "opacity 0.5s ease, transform 0.5s ease";
     favDiv.appendChild(item);
 
@@ -70,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
     itemInfo.appendChild(description);
 
     var price = document.createElement("h3");
-    price.innerText = book.price;
+    price.innerText = "EGP " + book.price;
     price.id = "price";
     itemInfo.appendChild(price);
 
@@ -91,27 +86,25 @@ document.addEventListener("DOMContentLoaded", function () {
     deleteIcon.style.color = "red";
     deleteIcon.style.fontSize = "20px";
     deleteIcon.style.marginLeft = "10px";
-    
+
     deleteIcon.addEventListener("click", function () {
       item.style.opacity = "0";
       item.style.transform = "scale(0.9)";
       setTimeout(() => {
         item.remove();
-        console.log(cUser)
-        cUser.favBooks = cUser.favBooks.filter(favBookId => favBookId != book.id);
-        console.log(cUser.favBooks)
-        users = users.map(user => {
-          if (users.email === cUser.email) {
+        console.log(cUser);
+        cUser.favBooks = cUser.favBooks.filter((val) => val != book.id);
+        console.log(cUser.favBooks);
+        users = users.map((user) => {
+          if (user.email === cUser.email) {
             user.favBooks = cUser.favBooks;
           }
           return user;
         });
         localStorage.setItem("users", JSON.stringify(users));
         location.reload();
-
       }, 500);
     });
 
     item.appendChild(deleteIcon);
-  }
-});
+  });
