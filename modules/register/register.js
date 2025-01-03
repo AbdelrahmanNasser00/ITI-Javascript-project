@@ -101,6 +101,10 @@ function loadRegisterPage() {
 
     registerContainer.appendChild(registerForm);
 
+    // validation schema
+    const emailPattern = /^[a-zA-Z0-9._-]{3,}@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const passwordPattern = /^[A-Za-z0-9!@#$%^&*]{6,}$/;
+
     // Form submission
     registerForm.addEventListener("submit", (e) => {
       e.preventDefault();
@@ -112,6 +116,17 @@ function loadRegisterPage() {
 
       if (password !== confirmPassword) {
         alert("Passwords do not match.");
+        return;
+      }
+      // validation
+      if (!emailPattern.test(email)) {
+        alert("Please enter a valid email address.");
+        return;
+      }
+      if (!passwordPattern.test(password)) {
+        alert(
+          "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character."
+        );
         return;
       }
 

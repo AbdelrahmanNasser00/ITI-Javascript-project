@@ -1,6 +1,6 @@
 /****************************TO GET ALL BOOKS FROM LOCAL STORAGE********************************** */
 var localBooksData = JSON.parse(localStorage.getItem("apiData"));
-import { handleUserState, logout } from "../shared.js";
+import { getCard, handleUserState, logout } from "../shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -25,6 +25,7 @@ var ul = [
     name: "new",
     link: "#",
   },
+
 ];
 
 var list = document.getElementById("navLinks");
@@ -132,15 +133,6 @@ for (let i = 0; i < localBooksData.length; i++) {
   ) {
     categories_arr[6].epicBooks.push(localBooksData[i]);
   }
-}
-
-function getCard(img, name, author, price) {
-  return `
-              <img src=${img} alt="" class="book-img">
-              <h3 class="book-name">${name}</h3>
-              <h4 class="book-auther">${author}</h4>
-              <p class="book-price"><span class="pound">EGP </span>${price}</p>
-  `;
 }
 
 function loadCategory(categories) {

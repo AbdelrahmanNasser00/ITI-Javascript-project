@@ -5,7 +5,7 @@ var localBooksData = JSON.parse(localStorage.getItem("apiData") || []);
 /***************************************IMPORT FILTERS*****************************************/
 
 import { sortBooksHighToLow, sortBooksLowToHigh } from "./api/filter.js";
-import { handleUserState } from "./modules/shared.js";
+import { getCard, handleUserState } from "./modules/shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -30,6 +30,7 @@ var ul = [
     name: "new",
     link: "#",
   },
+
 ];
 
 var list = document.getElementById("navLinks");
@@ -55,15 +56,6 @@ list.style.cssText = `
   `;
 
 /************************ CARDS***********************/
-
-function getCard(img, name, author, price) {
-  return `
-              <img src=${img} alt="" class="book-img">
-              <h3 class="book-name">${name}</h3>
-              <h4 class="book-auther">${author}</h4>
-              <p class="book-price"><span class="pound">EGP </span>${price}</p>
-  `;
-}
 
 function displayAllBooks(arr) {
   var cards = document.getElementById("cards");
@@ -159,7 +151,8 @@ arrow.addEventListener("click", scrollToTop);
 
 var sliderArr = localBooksData.slice(0, 10);
 
-function displaySlider() {
+function displaySlider() 
+{
   var slider = document.getElementById("slider");
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -169,6 +162,11 @@ function displaySlider() {
     sliderArr[8].author,
     sliderArr[8].price
   );
+  SliderContainer.addEventListener("click", function () {
+    window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[8].id}`;
+  });
+
+
 
   slider.append(SliderContainer);
 
@@ -180,10 +178,19 @@ function displaySlider() {
     sliderArr[9].author,
     sliderArr[9].price
   );
+  SliderContainer.addEventListener("click", function () {
+    window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[9].id}`;
+  });
+
+  
+
 
   slider.append(SliderContainer);
 
-  for (var i = 0; i < sliderArr.length; i++) {
+  for (var i = 0; i < sliderArr.length; i++)
+  {
+    var bookID=sliderArr[i].id;
+    // console.log(bookID);
     var SliderContainer = document.createElement("div");
     SliderContainer.classList.add("book-card", "slide");
     SliderContainer.innerHTML = getCard(
@@ -192,6 +199,12 @@ function displaySlider() {
       sliderArr[i].author,
       sliderArr[i].price
     );
+      SliderContainer.addEventListener("click", (function(bookID) {
+        return function() {
+          window.location.href = `./modules/product_page/product_page.html?id=${bookID}`;
+        };
+      })(bookID));
+  
     slider.append(SliderContainer);
   }
 
@@ -203,6 +216,10 @@ function displaySlider() {
     sliderArr[0].author,
     sliderArr[0].price
   );
+  SliderContainer.addEventListener("click", function () {
+    window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[0].id}`;
+  });
+
 
   slider.append(SliderContainer);
   var SliderContainer = document.createElement("div");
@@ -212,13 +229,16 @@ function displaySlider() {
     sliderArr[1].title,
     sliderArr[1].author,
     sliderArr[1].price
-  );
+  );  SliderContainer.addEventListener("click", function () {
+    window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[1].id}`;
+  });
+
 
   slider.append(SliderContainer);
+
 }
 
 displaySlider();
-
 var track = document.querySelector(".slider-track");
 var prevBtn = document.querySelector(".slider-left-btn");
 var nextBtn = document.querySelector(".slider-right-btn");

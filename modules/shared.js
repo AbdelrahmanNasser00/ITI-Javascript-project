@@ -33,3 +33,12 @@ export function logout() {
     console.error("Error during logout:", error);
   }
 }
+
+export function getCard(img, name, author, price) {
+  return `
+              <img src=${img} alt="" class="book-img">
+              <h3 class="book-name">${name}</h3>
+              <h4 class="book-auther">${author}</h4>
+              <p class="book-price"><span class="pound">EGP </span>${price}</p>
+  `;
+}
