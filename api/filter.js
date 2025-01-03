@@ -1,5 +1,7 @@
 /*********************************tha data that not found in api ***************************************/
 
+import { getCard } from "../modules/shared.js";
+
 const bookCovers = [
   {
     title: "To Kill a Mockingbird",
@@ -229,14 +231,14 @@ const bookCovers = [
 
 /************************ Fetch data from api ****************************/
 
-if(!localStorage.getItem("apiData")){
+if (!localStorage.getItem("apiData")) {
   var xhr = new XMLHttpRequest();
 
   var apiUrl = "https://freetestapi.com/api/v1/books";
   var proxyUrl = "https://api.allorigins.win/get?url=";
-  
+
   xhr.open("Get", proxyUrl + apiUrl, true);
-  
+
   xhr.onload = function () {
     if (xhr.status >= 200 && xhr.status < 300) {
       var allData = JSON.parse(xhr.responseText);
@@ -252,24 +254,14 @@ if(!localStorage.getItem("apiData")){
         booksDataContent[i].cover_image = bookCovers[i].image;
       }
       booksDataContent.sort((a, b) => a.id - b.id);
-  
+
       localStorage.setItem("apiData", JSON.stringify(booksDataContent));
     } else {
       console.log("error fetching data ", xhr.statusText);
     }
   };
-  
+
   xhr.send();
-}
-
-
-function getCard(img, name, author, price) {
-  return `
-              <img src=${img} alt="" class="book-img">
-              <h3 class="book-name">${name}</h3>
-              <h4 class="book-auther">${author}</h4>
-              <p class="book-price"><span class="pound">EGP </span>${price}</p>
-  `;
 }
 
 var localBooksData = JSON.parse(localStorage.getItem("apiData"));

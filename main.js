@@ -5,7 +5,7 @@ var localBooksData = JSON.parse(localStorage.getItem("apiData") || []);
 /***************************************IMPORT FILTERS*****************************************/
 
 import { sortBooksHighToLow, sortBooksLowToHigh } from "./api/filter.js";
-import { handleUserState } from "./modules/shared.js";
+import { getCard, handleUserState } from "./modules/shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -55,15 +55,6 @@ list.style.cssText = `
   `;
 
 /************************ CARDS***********************/
-
-function getCard(img, name, author, price) {
-  return `
-              <img src=${img} alt="" class="book-img">
-              <h3 class="book-name">${name}</h3>
-              <h4 class="book-auther">${author}</h4>
-              <p class="book-price"><span class="pound">EGP </span>${price}</p>
-  `;
-}
 
 function displayAllBooks(arr) {
   var cards = document.getElementById("cards");
