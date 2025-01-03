@@ -36,7 +36,20 @@ nav#header {
     font-size: 24px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
+/*back to home button*/
+#backToHome{
+    font-size: 16px;
+    padding: 12px 10px;
+    background-color: var(--color1);
+    border: 1px solid var(--color1);
+    color: white;
+    border-radius: 6px;
+    margin: 10px;
+    transition-duration: .5s;
+}
+#backToHome:hover{
+    transform: translateX(-5px);
+}
 /* Main container */
 main#shopCart {
     max-width: 800px;

@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", function () {
   var id = new URLSearchParams(window.location.search).get("id");
   var apiData = JSON.parse(localStorage.getItem("apiData"));
   var users = JSON.parse(localStorage.getItem("users"));
@@ -266,4 +265,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // console.log(users);
   });
 
-});
+//back home function
+function backHome(){
+  window.location.href = "../../index.html";
+}
+

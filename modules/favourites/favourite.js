@@ -108,3 +108,9 @@
 
     item.appendChild(deleteIcon);
   });
+
+  //back home function
+function backHome(){
+  window.location.href = "../../index.html";
+}
+

@@ -22,7 +22,23 @@ body {
     color: #2C3E50;
     animation: fadeIn 1.5s ease-out;
 }
-
+/*back to home button*/
+#backToHome{
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    font-size: 16px;
+    padding: 12px 10px;
+    background-color: var(--color1);
+    border: 1px solid var(--color1);
+    color: white;
+    border-radius: 6px;
+    margin: 5px;
+    transition-duration: .5s;
+}
+#backToHome:hover{
+    transform: translateX(-5px);
+}
 /*add to card section*/
 #addToCardSection{
     border-radius: 10px;

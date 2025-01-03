@@ -8,6 +8,8 @@ var currentUser =
 var cUser;
 var addedToCardBooksIds = [];
 var addedToCardBooks = [];
+var total = 0;
+
 
 // Identify the current user
 for (var i = 0; i < users.length; i++) {
@@ -33,6 +35,7 @@ var favDiv = document.getElementById("shopCart");
 
 // Render books in the shopping cart
 addedToCardBooks.forEach((book, index) => {
+  total+=Number(book.price)
   var item = document.createElement("section");
   item.classList = index % 2 === 0 ? "item item1" : "item item1";
   item.style.transition = "opacity 0.5s ease, transform 0.5s ease";
@@ -65,6 +68,11 @@ addedToCardBooks.forEach((book, index) => {
   description.id = "description";
   itemInfo.appendChild(description);
 
+  var price = document.createElement("h3");
+    price.innerText = "EGP " + book.price;
+    price.id = "price";
+    itemInfo.appendChild(price);
+
   var goToItem = document.createElement("button");
   goToItem.innerText = "Go to Item";
   goToItem.id = "goToItem";
@@ -74,10 +82,23 @@ addedToCardBooks.forEach((book, index) => {
   itemInfo.appendChild(goToItem);
 
   var addPaymentMethod = document.createElement("button");
-  addPaymentMethod.innerText = "Add Payment Method";
-  addPaymentMethod.id = "addPaymentMethod";
+addPaymentMethod.innerText = "Add Payment Method";
+addPaymentMethod.id = "addPaymentMethod";
 
-  addPaymentMethod.addEventListener("click", function () {
+// Check if the book is already purchased on page load
+if (
+  cUser.purchasedBooks &&
+  cUser.purchasedBooks.includes(book.id)
+) {
+  Purchased = true; // Mark as purchased
+  addPaymentMethod.disabled = true;
+  addPaymentMethod.innerText = "Purchased";
+}
+var Purchased = false;
+
+// Add click event listener
+addPaymentMethod.addEventListener("click", function () {
+  if (!Purchased) { // Check if not already purchased
     for (var i = 0; i < users.length; i++) {
       if (users[i].email === currentUser.email) {
         if ("purchasedBooks" in users[i]) {
@@ -87,11 +108,31 @@ addedToCardBooks.forEach((book, index) => {
         }
       }
     }
+    Purchased = true; 
+    addPaymentMethod.disabled = true; 
+    addPaymentMethod.innerText = "Purchased"; 
     localStorage.setItem("users", JSON.stringify(users));
     alert("Book added to purchased list.");
-  });
-  itemInfo.appendChild(addPaymentMethod);
+    setTimeout(() => {
+      item.remove();
+      total-= book.price
+      totalData.innerText = "Total: " + total + " EGP";
+      cUser.addedToCard = cUser.addedToCard.filter((val) => val != book.id);
+      users = users.map((user) => {
+        if (user.email === cUser.email) {
+          user.addedToCard = cUser.addedToCard;
+        }
+        return user;
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+    }, 500);
+  }
+  
+});
 
+itemInfo.appendChild(addPaymentMethod);
+
+  
   var deleteIcon = document.createElement("i");
   deleteIcon.className = "fa-solid fa-trash delete-sicon";
   deleteIcon.style.cursor = "pointer";
@@ -104,6 +145,8 @@ addedToCardBooks.forEach((book, index) => {
     item.style.transform = "scale(0.9)";
     setTimeout(() => {
       item.remove();
+      total-= book.price
+      totalData.innerText = "Total: " + total + " EGP";
       cUser.addedToCard = cUser.addedToCard.filter((val) => val != book.id);
       users = users.map((user) => {
         if (user.email === cUser.email) {
@@ -117,3 +160,11 @@ addedToCardBooks.forEach((book, index) => {
 
   item.appendChild(deleteIcon);
 });
+var totalData = document.createElement("h3");
+totalData.innerText = "Total: " + total + " EGP";
+favDiv.appendChild(totalData)
+
+//back home function
+function backHome(){
+  window.location.href = "../../index.html";
+}
