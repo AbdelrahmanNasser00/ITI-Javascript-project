@@ -188,6 +188,7 @@ if (booksOrder && booksOrder.length > 0) {
             }
         }
     } } else {
+      console.log("hiiiii");
       var container = document.getElementById('cart-page');
       var emptyMessage = document.createElement('div');
       emptyMessage.style.textAlign = 'center';
