@@ -30,7 +30,6 @@ var ul = [
     name: "new",
     link: "#",
   },
-
 ];
 
 var list = document.getElementById("navLinks");
@@ -69,10 +68,16 @@ function displayAllBooks(arr) {
       arr[i].author,
       arr[i].price
     );
-    book.addEventListener("click", function () {
-      window.location.href =
-        "modules/product_page/product_page.html?id=" + localBooksData[i].id;
-    });
+
+    const bookId = arr[i].id;
+    if (bookId) {
+      book.addEventListener("click", function () {
+        // Ensure valid ID format for redirection
+        window.location.href = `./modules/product_page/product_page.html?id=${bookId}`;
+      });
+    } else {
+      console.warn(`No valid ID found for book: ${arr[i].title}`);
+    }
     cards.append(book);
   }
 }
@@ -151,8 +156,7 @@ arrow.addEventListener("click", scrollToTop);
 
 var sliderArr = localBooksData.slice(0, 10);
 
-function displaySlider() 
-{
+function displaySlider() {
   var slider = document.getElementById("slider");
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -165,8 +169,6 @@ function displaySlider()
   SliderContainer.addEventListener("click", function () {
     window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[8].id}`;
   });
-
-
 
   slider.append(SliderContainer);
 
@@ -182,14 +184,10 @@ function displaySlider()
     window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[9].id}`;
   });
 
-  
-
-
   slider.append(SliderContainer);
 
-  for (var i = 0; i < sliderArr.length; i++)
-  {
-    var bookID=sliderArr[i].id;
+  for (var i = 0; i < sliderArr.length; i++) {
+    var bookID = sliderArr[i].id;
     // console.log(bookID);
     var SliderContainer = document.createElement("div");
     SliderContainer.classList.add("book-card", "slide");
@@ -199,12 +197,15 @@ function displaySlider()
       sliderArr[i].author,
       sliderArr[i].price
     );
-      SliderContainer.addEventListener("click", (function(bookID) {
-        return function() {
+    SliderContainer.addEventListener(
+      "click",
+      (function (bookID) {
+        return function () {
           window.location.href = `./modules/product_page/product_page.html?id=${bookID}`;
         };
-      })(bookID));
-  
+      })(bookID)
+    );
+
     slider.append(SliderContainer);
   }
 
@@ -220,7 +221,6 @@ function displaySlider()
     window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[0].id}`;
   });
 
-
   slider.append(SliderContainer);
   var SliderContainer = document.createElement("div");
   SliderContainer.classList.add("book-card", "slide");
@@ -229,13 +229,12 @@ function displaySlider()
     sliderArr[1].title,
     sliderArr[1].author,
     sliderArr[1].price
-  );  SliderContainer.addEventListener("click", function () {
+  );
+  SliderContainer.addEventListener("click", function () {
     window.location.href = `./modules/product_page/product_page.html?id=${sliderArr[1].id}`;
   });
 
-
   slider.append(SliderContainer);
-
 }
 
 displaySlider();

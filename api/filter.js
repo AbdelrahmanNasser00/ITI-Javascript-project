@@ -298,6 +298,16 @@ export function sortBooksLowToHigh() {
       sortedBooksAscending[i].price
     );
 
+    const bookId = sortedBooksAscending[i].id;
+    if (bookId) {
+      book.addEventListener("click", function () {
+        // Ensure valid ID format for redirection
+        window.location.href = `../modules/product_page/product_page.html?id=${bookId}`;
+      });
+    } else {
+      console.warn(`No valid ID found for book: ${sortedBooksAscending[i].title}`);
+    }
+
     cards.append(book);
   }
 }
@@ -330,6 +340,17 @@ export function sortBooksHighToLow() {
       sortedBooksDescending[i].author,
       sortedBooksDescending[i].price
     );
+
+    
+    const bookId = sortedBooksDescending[i].id;
+        if (bookId) {
+          book.addEventListener("click", function () {
+            // Ensure valid ID format for redirection
+            window.location.href = `../modules/product_page/product_page.html?id=${bookId}`;
+          });
+        } else {
+          console.warn(`No valid ID found for book: ${sortedBooksDescending[i].title}`);
+        }
 
     cards.append(book);
   }
