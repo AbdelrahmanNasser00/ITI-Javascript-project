@@ -3,34 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">  
     <link rel="stylesheet" href="../../css/all.css">
     <link rel="stylesheet" href="../../css/card.css">
     <title>Card page</title>
 </head>
 <body>
+    
     <header>
         <div class="head">
-            <a href="#"> <img src="/assets/img/logo.svg" class="logo" alt=""></a>
-                <nav>
-                    <ul id="navLinks"></ul>
-                </nav>
-                <div class="head-btns">
-                    <a href="/modules/login/login.html" class="navLink login">Login</a>
-                    <a href="/modules/register/register.html"class="navLink ">Regiter</a>
-                    <a href="index.html" onclick="logout()" id="logOut"class="navLink ">Log out</a>
-                    <a href="/modules/card/card.html"><i class="fa-solid fa-cart-shopping"></i></a>
-                </div>
+          <a href="#"> <img src="/assets/img/logo.svg" class="logo" alt="" /></a>
+          <nav>
+            <ul id="navLinks"></ul>
+          </nav>
+          <div class="head-btns">
+            <a href="/modules/login/login.html" class="login">Login</a>
+            <a href="/modules/register/register.html" class="register"
+              >Register</a
+            >
+            <a href="index.html" id="logOut" class="logout">Log out</a>
+            <a href=""><i class="fa-solid fa-cart-shopping"></i></a>
+          </div>
         </div>
-    </header>
+      </header>
+
         <main>
             <div id="cart-page">
 
             </div>
         </main>
-        <footer>
-            
-        </footer>
+        <div id="arrow" class="arrow"><i class="fa-solid fa-arrow-up"></i></div>
+
+    <footer id="footer">
+      <div>
+        <img src="assets/img/logo.svg" alt="">
+        <p>“Book Haven” is a pioneer in the field of book selling in Egypt, and it includes an exceptional selection of the most prominent and important Arabic and foreign titles at prices within the reader’s reach.</p>
+      </div>
+      <div>
+        <h2>Categories :</h2>
+        <ul class="cat">
+          <li>Classic</li>
+          <li>Fiction</li>
+          <li>Dystopian</li>
+          <li>Romance</li>
+          <li>Adventure</li>
+          <li>Fantasy</li>
+          <li>Epic</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Contact Us :</h2>
+        <ul>
+          <li><a href=""><i class="fa-brands fa-facebook"></i>book haven</a></li>
+          <li><a href=""><i class="fa-brands fa-instagram"></i>book haven</a></li>
+          <li><a href=""><i class="fa-brands fa-whatsapp"></i>01234567890</a></li>
+          <li><a href=""><i class="fa-brands fa-tiktok"></i>book haven</a></li>
+          <li><a href=""><i class="fa-solid fa-envelope"></i>bookhaven@gmail.com</a></li>
+        </ul>
+      </div>
+    </footer>
     <script src="card.js"></script>
 </body>
 </html>
