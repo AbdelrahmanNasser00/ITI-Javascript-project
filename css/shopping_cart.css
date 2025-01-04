@@ -109,19 +109,20 @@ nav#header {
 main#shopCart {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between; /* Spacing between items */
-    gap: 10px; /* Space between rows */
     max-width: 1000px;
     margin: 20px auto;
-    padding: 10px; /* Reduced padding */
+    padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Item container */
 .item {
-    width: calc(50% - 20px); /* Adjusted width for margins */
-    margin: 10px 0; /* Vertical margin only */
+    position: relative;
+    width: 45%;
+    margin: 15px;
+    padding: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
