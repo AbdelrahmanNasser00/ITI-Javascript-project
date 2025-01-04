@@ -156,7 +156,8 @@ function loadCategory(categories) {
 
     // Add category title
     const categoryLine = document.createElement("hr");
-    const categoryTitle = document.createElement("h1");
+    categoryLine.id=categories[i].title+1;
+    const categoryTitle = document.createElement("h2");
     categoryTitle.classList.add("categories-title");
     categoryTitle.textContent = categories[i].title;
 
