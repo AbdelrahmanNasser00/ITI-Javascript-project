@@ -125,7 +125,6 @@ addPaymentMethod.addEventListener("click", function () {
         return user;
       });
       localStorage.setItem("users", JSON.stringify(users));
-      window.location.href = "../card/card.html";
     }, 500);
 
   }
