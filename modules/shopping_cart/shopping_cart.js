@@ -81,91 +81,107 @@ addedToCardBooks.forEach((book, index) => {
   });
   itemInfo.appendChild(goToItem);
 
-  var addPaymentMethod = document.createElement("button");
+  // Create Payment Method Button
+var addPaymentMethod = document.createElement("button");
 addPaymentMethod.innerText = "Add Payment Method";
 addPaymentMethod.id = "addPaymentMethod";
 
-// Check if the book is already purchased on page load
-if (
-  cUser.purchasedBooks &&
-  cUser.purchasedBooks.includes(book.id)
-) {
-  Purchased = true; // Mark as purchased
-  addPaymentMethod.disabled = true;
-  addPaymentMethod.innerText = "Purchased";
-}
-var Purchased = false;
-
-// Add click event listener
+// Display Payment Method Form
+var paymentmethoddiv = document.getElementsByClassName('payment-method-div')[0];
 addPaymentMethod.addEventListener("click", function () {
-  if (!Purchased) { // Check if not already purchased
-    for (var i = 0; i < users.length; i++) {
-      if (users[i].email === currentUser.email) {
-        if ("purchasedBooks" in users[i]) {
-          users[i].purchasedBooks.push(book.id);
-        } else {
-          users[i].purchasedBooks = [book.id];
-        }
-      }
-    }
-    Purchased = true; 
-    addPaymentMethod.disabled = true; 
-    addPaymentMethod.innerText = "Purchased"; 
-    localStorage.setItem("users", JSON.stringify(users));
-    alert("Book added to purchased list.");
-    setTimeout(() => {
-      item.remove();
-      total-= book.price
-      totalData.innerText = "Total: " + total + " EGP";
-      cUser.addedToCard = cUser.addedToCard.filter((val) => val != book.id);
-      users = users.map((user) => {
-        if (user.email === cUser.email) {
-          user.addedToCard = cUser.addedToCard;
-        }
-        return user;
-      });
-      localStorage.setItem("users", JSON.stringify(users));
-    }, 500);
-
-  }
-  
+  paymentmethoddiv.style.opacity = "1";
+  paymentmethoddiv.style.zIndex = "1";
 });
 
+// Append Payment Method Button
 itemInfo.appendChild(addPaymentMethod);
 
-  
-  var deleteIcon = document.createElement("i");
-  deleteIcon.className = "fa-solid fa-trash delete-sicon";
-  deleteIcon.style.cursor = "pointer";
-  deleteIcon.style.color = "red";
-  deleteIcon.style.fontSize = "20px";
-  deleteIcon.style.marginLeft = "10px";
+// Add Card Form Submission
+var addCardForm = document.getElementById("addCardForm");
+addCardForm.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent default form submission behavior
 
-  deleteIcon.addEventListener("click", function () {
-    item.style.opacity = "0";
-    item.style.transform = "scale(0.9)";
-    setTimeout(() => {
-      item.remove();
-      total-= book.price
-      totalData.innerText = "Total: " + total + " EGP";
-      cUser.addedToCard = cUser.addedToCard.filter((val) => val != book.id);
-      users = users.map((user) => {
-        if (user.email === cUser.email) {
-          user.addedToCard = cUser.addedToCard;
-        }
-        return user;
-      });
-      localStorage.setItem("users", JSON.stringify(users));
-    }, 500);
-  });
+  // Update Purchased Books
+  for (var i = 0; i < users.length; i++) {
+    if (users[i].email === currentUser.email) {
+      if ("purchasedBooks" in users[i]) {
+        users[i].purchasedBooks.push(book.id);
+      } else {
+        users[i].purchasedBooks = [book.id];
+      }
+    }
+  }
+  localStorage.setItem("users", JSON.stringify(users));
 
-  item.appendChild(deleteIcon);
+  // Provide Feedback and Remove Item
+  alert("Book added to purchased list.");
+  setTimeout(() => {
+    item.remove();
+    updateTotal(book.price);
+    updateCartData(book.id);
+  }, 500);
+  paymentmethoddiv.style.opacity = "0";
+  paymentmethoddiv.style.zIndex = "-1";
 });
-var totalData = document.createElement("h3");
-totalData.innerText = "Total: " + total + " EGP";
-favDiv.appendChild(totalData)
 
-//back home function
-function backHome(){
+// Delete Icon for Item
+var deleteIcon = document.createElement("i");
+deleteIcon.className = "fa-solid fa-trash delete-sicon";
+Object.assign(deleteIcon.style, {
+  cursor: "pointer",
+  color: "red",
+  fontSize: "20px",
+  marginLeft: "10px",
+  position: "absolute",
+  top: "10px",
+});
+
+deleteIcon.addEventListener("click", function () {
+  item.style.opacity = "0";
+  item.style.transform = "scale(0.9)";
+
+  setTimeout(() => {
+    item.remove();
+    updateTotal(book.price);
+    updateCartData(book.id);
+  }, 500);
+});
+
+// Append Delete Icon
+item.appendChild(deleteIcon);
+
+// Total Data Display
+var totalData = document.createElement("h3");
+totalData.innerText = "Total: " + total + ".00 EGP";
+Object.assign(totalData.style, {
+  width: "100%",
+  color: "#7f5539",
+  padding: "15px 15px 5px",
+  fontWeight: "bolder",
+});
+favDiv.appendChild(totalData);
+
+// Update Total Function
+function updateTotal(price) {
+  total -= price;
+  totalData.innerText = "Total: " + total + " EGP";
+}
+
+// Update Cart Data Function
+function updateCartData(bookId) {
+  cUser.addedToCard = cUser.addedToCard.filter((val) => val != bookId);
+  users = users.map((user) => {
+    if (user.email === cUser.email) {
+      user.addedToCard = cUser.addedToCard;
+    }
+    return user;
+  });
+  localStorage.setItem("users", JSON.stringify(users));
+}
+
+
+})
+// Back to Home Function
+function backHome() {
   window.location.href = "../../index.html";
 }
