@@ -151,15 +151,7 @@ deleteIcon.addEventListener("click", function () {
 item.appendChild(deleteIcon);
 
 // Total Data Display
-var totalData = document.createElement("h3");
-totalData.innerText = "Total: " + total + ".00 EGP";
-Object.assign(totalData.style, {
-  width: "100%",
-  color: "#7f5539",
-  padding: "15px 15px 5px",
-  fontWeight: "bolder",
-});
-favDiv.appendChild(totalData);
+
 
 // Update Total Function
 function updateTotal(price) {
@@ -181,6 +173,15 @@ function updateCartData(bookId) {
 
 
 })
+var totalData = document.createElement("h3");
+totalData.innerText = "Total: " + total + ".00 EGP";
+Object.assign(totalData.style, {
+  width: "100%",
+  color: "#7f5539",
+  padding: "15px 15px 5px",
+  fontWeight: "bolder",
+});
+favDiv.appendChild(totalData);
 // Back to Home Function
 function backHome() {
   window.location.href = "../../index.html";
