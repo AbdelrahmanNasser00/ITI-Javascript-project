@@ -1,7 +1,7 @@
 var ul = [
     {
       name: "Home",
-      link: "/index.html",
+      link: "../../index.html",
     },
     {
       name: "About",
@@ -13,7 +13,7 @@ var ul = [
     },
     {
       name: "Categories",
-      link: "./modules/categories/categories.html",
+      link: "../categories/categories.html",
     },
     {
       name: "new",
@@ -64,6 +64,8 @@ for(i=0;i< users.length;i++)
     }
 }
 console.log(booksOrder);
+
+if (booksOrder && booksOrder.length > 0) {
     //get books from localstorage #FCF7E6
     var books;
     books=JSON.parse(localStorage.getItem('apiData'));
@@ -76,7 +78,7 @@ console.log(booksOrder);
             {
                 console.log(books[0]);
                var container=document.getElementById('cart-page');
-               container.style.margin='0 0 40px 0';
+               container.style.margin='0 0 120px 0';
                 //cart element
                var cart=document.createElement('div');
                cart.style.backgroundColor='#F9F1DD';
@@ -185,7 +187,16 @@ console.log(booksOrder);
                         
             }
         }
-    }
+    } } else {
+      var container = document.getElementById('cart-page');
+      var emptyMessage = document.createElement('div');
+      emptyMessage.style.textAlign = 'center';
+      emptyMessage.style.fontSize = '24px';
+      emptyMessage.style.marginTop = '250px';
+      emptyMessage.style.marginBottom = '250px';
+      emptyMessage.textContent = ' No books have been purchased yet.';
+      container.appendChild(emptyMessage);
+  }
     
 }
 
