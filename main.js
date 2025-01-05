@@ -336,6 +336,7 @@ var bookCards = document.querySelectorAll(".book-card");
 var arrow = document.querySelector(".arrow");
 var sliderRightBtn = document.querySelector(".slider-right-btn");
 var sliderLeftBtn = document.querySelector(".slider-left-btn");
+var historyBtn = document.getElementById("history");
 
 ///////////////////////////Hover effect functions///////////////////
 
@@ -458,6 +459,10 @@ if (sliderLeftBtn) {
   sliderLeftBtn.addEventListener("mouseout", handleMouseOutSliderButton);
 }
 
+if (historyBtn) {
+  historyBtn.addEventListener("mouseover", handleMouseOverButton);
+  historyBtn.addEventListener("mouseout", handleMouseOutButton);
+}
 // Store querySelector results for .search and #options
 var searchInput = document.querySelector(".search");
 var options = document.querySelector("#filter");
