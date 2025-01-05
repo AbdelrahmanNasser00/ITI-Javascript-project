@@ -42,3 +42,11 @@ export function getCard(img, name, author, price) {
               <p class="book-price"><span class="pound">EGP </span>${price}</p>
   `;
 }
+
+export function renderNavLinks(list, ul) {
+  for (var i = 0; i < ul.length; i++) {
+    var listItem = document.createElement("li");
+    listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
+    list.append(listItem);
+  }
+}

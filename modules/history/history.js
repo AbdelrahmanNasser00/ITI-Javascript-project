@@ -1,3 +1,5 @@
+import { renderNavLinks } from "../shared.js";
+
 var ul = [
   {
     name: "Home",
@@ -22,17 +24,7 @@ var ul = [
 ];
 
 var list = document.getElementById("navLinks");
-var search = document.getElementById("search");
-
-function navLinks() {
-  for (var i = 0; i < ul.length; i++) {
-    var listItem = document.createElement("li");
-    listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
-    list.append(listItem);
-  }
-}
-
-navLinks();
+renderNavLinks(list, ul);
 
 list.style.cssText = `
       display: flex;
@@ -58,12 +50,12 @@ if (currentUser) {
   console.log(booksOrder);
 
   if (booksOrder && booksOrder.length > 0) {
-    //get books from localstorage #FCF7E6
+    //get books from localstorage
     var books;
     books = JSON.parse(localStorage.getItem("apiData"));
     //get books from storage that match user order
     for (var i = 0; i < booksOrder.length; i++) {
-      for (j = 0; j < books.length; j++) {
+      for (var j = 0; j < books.length; j++) {
         if (booksOrder[i] == books[j].id) {
           console.log(books[0]);
           var container = document.getElementById("cart-page");
@@ -129,7 +121,7 @@ if (currentUser) {
           var priceDivText = document.createTextNode(books[j].price + "   EGP");
           priceDivElm.appendChild(priceDivText);
           //Button delete
-          button = document.createElement("button");
+          var button = document.createElement("button");
           button.textContent = "Delete";
           button.style.height = "50px";
           button.style.width = "200px";

@@ -1,6 +1,6 @@
 /****************************TO GET ALL BOOKS FROM LOCAL STORAGE********************************** */
 var localBooksData = JSON.parse(localStorage.getItem("apiData"));
-import { getCard, handleUserState, logout } from "../shared.js";
+import { getCard, handleUserState, logout, renderNavLinks } from "../shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -25,21 +25,12 @@ var ul = [
     name: "new",
     link: "#",
   },
-
 ];
 
 var list = document.getElementById("navLinks");
-var search = document.getElementById("search");
 
-function navLinks() {
-  for (var i = 0; i < ul.length; i++) {
-    var listItem = document.createElement("li");
-    listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
-    list.append(listItem);
-  }
-}
 handleUserState();
-navLinks();
+renderNavLinks(list, ul);
 
 list.style.cssText = `
     display: flex;
@@ -156,7 +147,7 @@ function loadCategory(categories) {
 
     // Add category title
     const categoryLine = document.createElement("hr");
-    categoryLine.id=categories[i].title+1;
+    categoryLine.id = categories[i].title + 1;
     const categoryTitle = document.createElement("h2");
     categoryTitle.classList.add("categories-title");
     categoryTitle.textContent = categories[i].title;
@@ -228,7 +219,6 @@ var arrow = document.querySelector(".arrow");
 var sliderRightBtn = document.querySelector(".slider-right-btn");
 var sliderLeftBtn = document.querySelector(".slider-left-btn");
 var favIcons = document.querySelectorAll(".fa-heart");
-
 
 ///////////////////////////Hover effect functions////////////////////
 function handleMouseOverNav() {
@@ -307,7 +297,6 @@ for (var i = 0; i < cartIcons.length; i++) {
   cartIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
 
-
 // Add event listeners for buttons
 if (loginButton) {
   loginButton.addEventListener("mouseover", handleMouseOverButton);
@@ -383,10 +372,7 @@ if (options) {
   options.addEventListener("blur", handleBlurOptions);
 }
 
-
-
 for (var i = 0; i < cartIcons.length; i++) {
   favIcons[i].addEventListener("mouseover", handleMouseOverCart);
   favIcons[i].addEventListener("mouseout", handleMouseOutCart);
 }
-

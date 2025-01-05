@@ -1,7 +1,9 @@
-.cart:hover{
-    transition: 2s;
-    transform: scale(0.95);
-    position:absolute;
-    top: 5px;
+.cart:hover {
+    transition: 300ms;
+    transform: scale(1.01);
 
+}
+
+main {
+    height: 100vh;
 }

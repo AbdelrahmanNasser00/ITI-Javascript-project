@@ -5,7 +5,7 @@ var localBooksData = JSON.parse(localStorage.getItem("apiData") || []);
 /***************************************IMPORT FILTERS*****************************************/
 
 import { sortBooksHighToLow, sortBooksLowToHigh } from "./api/filter.js";
-import { getCard, handleUserState } from "./modules/shared.js";
+import { getCard, handleUserState, renderNavLinks } from "./modules/shared.js";
 
 /***************************************HOME PAGE*****************************************/
 
@@ -35,15 +35,7 @@ var ul = [
 var list = document.getElementById("navLinks");
 var search = document.getElementById("search");
 
-function navLinks() {
-  for (var i = 0; i < ul.length; i++) {
-    var listItem = document.createElement("li");
-    listItem.innerHTML = `<a href=${ul[i].link} class="navIl">${ul[i].name}</a>`;
-    list.append(listItem);
-  }
-}
-
-navLinks();
+renderNavLinks(list, ul);
 handleUserState();
 
 list.style.cssText = `
